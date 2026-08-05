@@ -3,8 +3,9 @@
 @import "tailwindcss/utilities";
 
 :root {
-  --font-geist-sans: ui-sans-serif, system-ui, sans-serif;
-  --font-geist-mono: ui-monospace, monospace;
+  --font-syne: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-dm-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-jetbrains: "JetBrains Mono", ui-monospace, monospace;
   color-scheme: dark;
 }
 
@@ -21,8 +22,67 @@ body {
 }
 
 .text-gradient {
-  @apply bg-gradient-to-r from-indigo-300 via-violet-200 to-indigo-400 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-cyan-300 via-teal-200 to-indigo-400 bg-clip-text text-transparent;
 }
+
+/* ── Showcase animations (8 named) ── */
+
+@keyframes pan {
+  0% { transform: translateX(0); opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { transform: translateX(120px); opacity: 0.4; }
+}
+
+@keyframes transition-lap {
+  0% { transform: translateX(-8%); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(8%); opacity: 0; }
+}
+
+@keyframes drop-down {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-wipe {
+  from { clip-path: inset(0 100% 0 0); opacity: 0.6; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(34, 211, 238, 0.15); opacity: 0.85; }
+  50% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.35); opacity: 1; }
+}
+
+@keyframes circuit-flow {
+  0% { stroke-dashoffset: 24; opacity: 0.3; }
+  50% { opacity: 0.8; }
+  100% { stroke-dashoffset: 0; opacity: 0.3; }
+}
+
+@keyframes parallax-drift {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-4px) translateX(2px); }
+  66% { transform: translateY(2px) translateX(-2px); }
+}
+
+.animate-pan { animation: pan 3s ease-in-out infinite; }
+.animate-transition-lap { animation: transition-lap 1.2s ease-out forwards; }
+.animate-drop-down { animation: drop-down 2s ease-in-out infinite; }
+.animate-fade-rise { animation: fade-rise 0.8s ease-out forwards; }
+.animate-reveal-wipe { animation: reveal-wipe 1s ease-out forwards; }
+.animate-glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
+.animate-circuit-flow {
+  stroke-dasharray: 8 4;
+  animation: circuit-flow 2s linear infinite;
+}
+.animate-parallax-drift { animation: parallax-drift 6s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -35,4 +95,14 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.community-section {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.studio-panel {
+  animation: slideUp 0.4s ease-out forwards;
+  opacity: 0;
 }

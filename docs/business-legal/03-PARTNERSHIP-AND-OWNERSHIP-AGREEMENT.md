@@ -13,7 +13,7 @@
 | **Party 2** | Brooke Caroline Hunt |
 | **Ownership split** | **50% Daniel Noel Mcgarry / 50% Brooke Caroline Hunt** |
 | **Effective date** | _________________ |
-| **Governing law (fill after counsel review)** | _________________ |
+| **Governing law (fill after counsel review)** | **State of New South Wales, Australia** (recommended for Gorokan / San Remo founders) |
 
 ---
 

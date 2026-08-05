@@ -34,6 +34,8 @@ Guided reading order for Daniel Noel Mcgarry and Brooke Caroline Hunt.
 | Daniel Noel Mcgarry | [partner-packages/DANIEL-NOEL-MCGARRY-EXECUTIVE-PACKAGE.md](./partner-packages/DANIEL-NOEL-MCGARRY-EXECUTIVE-PACKAGE.md) |
 | Brooke Caroline Hunt | [partner-packages/BROOKE-CAROLINE-HUNT-EXECUTIVE-PACKAGE.md](./partner-packages/BROOKE-CAROLINE-HUNT-EXECUTIVE-PACKAGE.md) |
 
+| E3 | [12-AUSTRALIA-NSW-REGISTRATION-AND-NEXT-STEPS.md](./12-AUSTRALIA-NSW-REGISTRATION-AND-NEXT-STEPS.md) | ABN, Pty Ltd, NSW contacts, deploy from iPhone |
+
 ## Part E — Execution & signatures
 
 | § | Document | Purpose |

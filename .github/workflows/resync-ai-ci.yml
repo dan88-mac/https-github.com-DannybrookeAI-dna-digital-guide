@@ -1,7 +1,8 @@
-name: CI
+name: Deploy Resync AI CI
 
 on:
   push:
+    branches: [main, cursor/resync-ai-full-build-86ce]
     paths: ["resync-ai/**"]
   pull_request:
     paths: ["resync-ai/**"]
@@ -23,6 +24,6 @@ jobs:
       - run: npm test
       - run: npm run build
         env:
-          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder
-          NEXT_PUBLIC_APP_URL: http://localhost:3000
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
+          NEXT_PUBLIC_APP_URL: https://placeholder.vercel.app

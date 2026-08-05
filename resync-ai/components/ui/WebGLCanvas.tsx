@@ -17,11 +17,12 @@ export function WebGLCanvas() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext("webgl", { antialias: true, alpha: true });
-    if (!gl) {
+    const glCtx = canvas.getContext("webgl", { antialias: true, alpha: true });
+    if (!glCtx) {
       setUseFallback(true);
       return;
     }
+    const gl = glCtx;
 
     const dpr = Math.min(window.devicePixelRatio, 2);
     let raf = 0;

@@ -49,7 +49,9 @@ function topologicalOrder(graph: GraphPayload): string[] {
     adj.get(e.source)?.push(e.target);
     inDegree.set(e.target, (inDegree.get(e.target) ?? 0) + 1);
   }
-  const queue = [...inDegree.entries()].filter(([, d]) => d === 0).map(([id]) => id);
+  const queue = Array.from(inDegree.entries())
+    .filter(([, d]) => d === 0)
+    .map(([id]) => id);
   const order: string[] = [];
   while (queue.length) {
     const id = queue.shift()!;

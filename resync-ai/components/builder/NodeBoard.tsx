@@ -9,6 +9,7 @@ import {
   useEdgesState,
   useNodesState,
   type Connection,
+  type Edge,
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
@@ -30,7 +31,7 @@ const initialNodes: Node[] = [
 
 export function NodeBoard({ templateSlug }: { templateSlug?: string }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [logs, setLogs] = useState<string[]>([]);
   const [showExport, setShowExport] = useState(false);
   const [validation, setValidation] = useState<string | null>(null);

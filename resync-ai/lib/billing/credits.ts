@@ -1,5 +1,6 @@
 import { createServiceClient } from "@/lib/supabase/server";
-import { creditsForTier, type SubscriptionTier } from "@/lib/billing/tiers";
+import { creditsForTier } from "@/lib/billing/tiers";
+import type { SubscriptionTier } from "@/types/database";
 
 function periodStart(): string {
   const d = new Date();

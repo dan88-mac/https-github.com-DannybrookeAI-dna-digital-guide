@@ -31,7 +31,7 @@ const initialNodes: Node[] = [
 
 export function NodeBoard({ templateSlug }: { templateSlug?: string }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const [logs, setLogs] = useState<string[]>([]);
   const [showExport, setShowExport] = useState(false);
   const [validation, setValidation] = useState<string | null>(null);

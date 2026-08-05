@@ -1,0 +1,39 @@
+# Deploy koder-pack to Netlify (runs on GitHub — not blocked like cloud VM)
+name: Deploy to Netlify
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "koder-pack/**"
+      - "netlify.toml"
+      - ".github/workflows/netlify-deploy.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: "./koder-pack"
+          production-branch: main
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Resync AI preview — ${{ github.sha }}"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+
+      - name: Print site URL
+        if: success()
+        run: |
+          echo "Site live at https://${{ secrets.NETLIFY_SITE_ID }}.netlify.app (or your custom Netlify subdomain)"
+          echo "Check Netlify dashboard for exact URL."

@@ -116,3 +116,5 @@ Or in **Files** → `pdf-deliverables/daniel-noel-mcgarry/*.pdf`
 ---
 
 **Recommended for you right now:** **Netlify Option 1** — import GitHub repo, deploy `koder-pack`, bookmark the URL on your iPhone home screen (Safari → Share → Add to Home Screen).
+
+**Automated deploy from GitHub:** see **`NETLIFY-DEPLOY-SETUP.md`** (Actions workflow + secrets).

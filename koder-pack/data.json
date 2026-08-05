@@ -130,12 +130,6 @@
     { "title": "Stripe + Supabase setup", "desc": "Connect billing and multi-tenant RLS." },
     { "title": "Customer story: nonprofit intake", "desc": "From 40% failures to 99% healed runs." }
   ],
-  "partners": {
-    "daniel": "Daniel Noel Mcgarry",
-    "brooke": "Brooke Caroline Hunt",
-    "split": "50% / 50%",
-    "region": "NSW, Australia"
-  },
   "github": {
     "owner": "dan88-mac",
     "repo": "https-github.com-DannybrookeAI-dna-digital-guide",
@@ -143,31 +137,23 @@
   },
   "contracts": [
     {
-      "title": "Daniel — complete pack (PDF)",
-      "path": "pdf-deliverables/daniel-noel-mcgarry/Resync-AI-Complete-Package-daniel-noel-mcgarry.pdf"
+      "title": "Master deployment blueprint",
+      "path": "docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md"
     },
     {
-      "title": "Brooke — complete pack (PDF)",
-      "path": "pdf-deliverables/brooke-caroline-hunt/Resync-AI-Complete-Package-brooke-caroline-hunt.pdf"
+      "title": "Vercel deployment guide",
+      "path": "VERCEL-DEPLOY.md"
     },
     {
-      "title": "50/50 partnership agreement (read & sign)",
-      "path": "docs/business-legal/03-PARTNERSHIP-AND-OWNERSHIP-AGREEMENT.md"
-    },
-    {
-      "title": "Australia NSW — ABN & Pty Ltd steps",
-      "path": "docs/business-legal/12-AUSTRALIA-NSW-REGISTRATION-AND-NEXT-STEPS.md"
-    },
-    {
-      "title": "Next steps (deploy + legal)",
-      "path": "NEXT-STEPS-DANIEL-BROOKE.md"
+      "title": "Deploy from GitHub",
+      "path": "resync-ai/DEPLOY-FROM-GITHUB.md"
     }
   ],
   "nav": [
     { "id": "home", "label": "Home" },
     { "id": "templates", "label": "Templates" },
     { "id": "community", "label": "Community" },
-    { "id": "contracts", "label": "Contracts" },
+    { "id": "contracts", "label": "Docs" },
     { "id": "about", "label": "Mission" },
     { "id": "pricing", "label": "Pricing" },
     { "id": "resources", "label": "Resources" },

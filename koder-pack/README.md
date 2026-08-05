@@ -26,7 +26,7 @@ No other file types are required.
 - **Home** — hero, stats, templates, waitlist  
 - **Templates** — gallery; tap → **Builder**  
 - **Community** / **Mission** / **Pricing** / **Resources**  
-- **Contracts** — PDF & legal doc links (Safari)  
+- **Docs** — deployment guides (Safari)  
 - **Dashboard** — metrics + telemetry table  
 - **Builder** — add nodes, validate, export (preview)  
 - **Sign in** — guest mode → builder  
@@ -43,8 +43,4 @@ See repo root **`IPHONE-VIEW-AND-SAVE.md`** — enable GitHub Pages, then open:
 
 ## Full production app
 
-Deploy from GitHub folder **`resync-ai/`** via Vercel (see repo `NEXT-STEPS-DANIEL-BROOKE.md`).
-
-## Co-founders
-
-Daniel Noel Mcgarry & Brooke Caroline Hunt — 50/50 — NSW, Australia.
+Deploy from GitHub folder **`resync-ai/`** via Vercel (see [VERCEL-DEPLOY.md](../VERCEL-DEPLOY.md)).

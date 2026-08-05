@@ -2,7 +2,7 @@
 
 | Area | Location |
 |------|----------|
-| **SaaS application** | [`resync-ai/`](resync-ai/) — Next.js product (builder, billing, community) |
+| **Koder iPhone preview (5 files only)** | [`koder-pack/`](koder-pack/) — `index.html`, `styles.css`, `app.js`, `data.json`, `README.md` |
 | **Technical blueprint** | [docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md](docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md) |
 | **Business & legal (50/50)** | [docs/business-legal/01-MASTER-INDEX.md](docs/business-legal/01-MASTER-INDEX.md) |
 | **PDF packs (Daniel & Brooke)** | [pdf-deliverables/](pdf-deliverables/) — run `./scripts/generate-partner-pdf-pack.sh` |

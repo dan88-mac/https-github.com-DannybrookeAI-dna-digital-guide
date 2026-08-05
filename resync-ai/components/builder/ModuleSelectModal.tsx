@@ -13,12 +13,9 @@ import { getAllLibraries, getRatioHints, getRecommendedPairs } from "@/lib/engin
 
 const ALL_CATEGORIES = Object.keys(CATEGORY_LABELS) as ModuleCategory[];
 
-interface FlatEntry {
-  kind: "header" | "module";
-  category?: ModuleCategory;
-  mod?: WorkflowModule;
-  moduleIndex?: number;
-}
+type FlatEntry =
+  | { kind: "header"; category: ModuleCategory }
+  | { kind: "module"; mod: WorkflowModule; moduleIndex: number };
 
 function ModuleDetailPanel({
   mod,

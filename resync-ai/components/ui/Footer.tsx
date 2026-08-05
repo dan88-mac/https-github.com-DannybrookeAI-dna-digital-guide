@@ -24,6 +24,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/marketplace" className="hover:text-white">
+                Marketplace
+              </Link>
+            </li>
+            <li>
               <Link href="/templates" className="hover:text-white">
                 Templates
               </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import Link from "next/link";
 import type { Edge, Node } from "@xyflow/react";
 import { calculateModelRefinement } from "@/lib/engine/refinementCalculator";
 
@@ -82,6 +83,12 @@ export function RefinementPanel({ nodes, edges }: { nodes: Node[]; edges: Edge[]
             </ul>
           </div>
         )}
+        <Link
+          href="/overview-score"
+          className="mt-4 block rounded-lg border border-indigo-500/30 bg-indigo-950/20 px-3 py-2.5 text-center text-xs font-medium text-indigo-300 hover:bg-indigo-950/40"
+        >
+          Open overview integrity blueprint →
+        </Link>
       </div>
     </div>
   );

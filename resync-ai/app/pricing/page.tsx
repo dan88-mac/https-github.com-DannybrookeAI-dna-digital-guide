@@ -33,6 +33,21 @@ export default function PricingPage() {
       </div>
 
       <section className="glass mt-16 rounded-2xl p-8">
+        <h2 className="text-xl font-semibold text-white">Official a-sync tested workflows</h2>
+        <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+          Browse the official marketplace for battle-tested workflows — free starters, subscription
+          bundles on Builder and above, and premium paid templates for enterprise patterns. Every
+          listing carries the a-sync tested badge and quality score.
+        </p>
+        <Link
+          href="/marketplace"
+          className="mt-4 inline-flex text-sm font-medium text-indigo-400 hover:text-indigo-300"
+        >
+          Explore official marketplace →
+        </Link>
+      </section>
+
+      <section className="glass mt-16 rounded-2xl p-8">
         <h2 className="text-xl font-semibold text-white">Marketplace fees</h2>
         <p className="mt-3 text-sm leading-relaxed text-zinc-400">
           When you buy or sell paid templates and modules on the Resync AI marketplace, standard

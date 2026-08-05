@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { RefinementResult } from "@/lib/engine/refinementCalculator";
 
 export function RefinementPanel({ refinement }: { refinement: RefinementResult | null }) {
@@ -56,6 +57,12 @@ export function RefinementPanel({ refinement }: { refinement: RefinementResult |
           ))}
         </ul>
       )}
+      <Link
+        href="/overview-score"
+        className="mt-4 block rounded-lg border border-indigo-500/30 bg-indigo-950/20 px-3 py-2 text-center text-xs font-medium text-indigo-300 hover:bg-indigo-950/40"
+      >
+        Deeper overview integrity blueprint →
+      </Link>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { createServiceClient } from "@/lib/supabase/server";
 import { creditsForTier } from "@/lib/billing/tiers";
 import type { SubscriptionTier } from "@/types/database";
+// Re-export so older imports of SubscriptionTier from tiers keep working in CI.
+export type { SubscriptionTier } from "@/types/database";
 
 function periodStart(): string {
   const d = new Date();

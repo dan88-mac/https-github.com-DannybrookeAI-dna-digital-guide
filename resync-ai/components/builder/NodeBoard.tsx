@@ -31,7 +31,7 @@ import { OFFICIAL_WORKFLOWS } from "@/lib/marketplace/officialWorkflows";
 import { canAccessOverviewScore, readSubscriberTier } from "@/lib/billing/access";
 import Link from "next/link";
 import { getStudioDesign } from "@/lib/studio/store";
-import { parseWorkflowNodeType } from "@/schemas/workflow";
+import { parseWorkflowNodeType, type WorkflowGraph } from "@/schemas/workflow";
 
 const MAX_NODES = 50;
 const DRAFT_KEY = "resync-workflow-draft";
@@ -286,11 +286,13 @@ export function NodeBoard({
     void triggerHaptic("medium");
   }, []);
 
-  const workflowGraph = useMemo(
-    () => ({
+  const workflowGraph = useMemo((): WorkflowGraph => {
+    return {
       nodes: nodes.map((n) => ({
         id: n.id,
-        type: parseWorkflowNodeType((n.data as { nodeType?: string }).nodeType ?? n.type),
+        type: String(
+          parseWorkflowNodeType((n.data as { nodeType?: string }).nodeType ?? n.type),
+        ),
         position: n.position,
         data: n.data as Record<string, unknown>,
       })),
@@ -301,9 +303,8 @@ export function NodeBoard({
         sourceHandle: e.sourceHandle ?? undefined,
         targetHandle: e.targetHandle ?? undefined,
       })),
-    }),
-    [nodes, edges],
-  );
+    };
+  }, [nodes, edges]);
 
   const tabs: { id: RightTab; label: string }[] = [
     { id: "inspector", label: "Inspector" },

@@ -1,5 +1,7 @@
 import type { SubscriptionTier } from "@/types/database";
 
+export type { SubscriptionTier };
+
 export interface TierConfig {
   id: SubscriptionTier;
   name: string;

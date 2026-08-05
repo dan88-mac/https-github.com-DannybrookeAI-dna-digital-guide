@@ -23,7 +23,7 @@ import { builderNodeTypes } from "@/components/builder/nodeTypes";
 const initialNodes: Node[] = [
   {
     id: "start",
-    type: "resync",
+    type: "httpRequest",
     position: { x: 120, y: 120 },
     data: { label: "HTTP Request", nodeType: "httpRequest" },
   },
@@ -75,7 +75,7 @@ export function NodeBoard({ templateSlug }: { templateSlug?: string }) {
       ...nds,
       {
         id,
-        type: "resync",
+        type: "selfHeal",
         position: { x: 80 + nds.length * 40, y: 200 },
         data: { label: "Self-heal step", nodeType: "selfHeal" },
       },

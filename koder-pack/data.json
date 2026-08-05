@@ -1,0 +1,178 @@
+{
+  "brand": {
+    "name": "Resync AI",
+    "tagline": "Self-healing workflow SaaS"
+  },
+  "stats": [
+    { "label": "Self-healed runs", "value": "2.4M+" },
+    { "label": "Community templates", "value": "180+" },
+    { "label": "Teams worldwide", "value": "12k+" },
+    { "label": "Avg. return visits / mo", "value": "8.2" }
+  ],
+  "missionPillars": [
+    {
+      "title": "Reliability for everyone",
+      "body": "Automations should recover gracefully—not wake you at 3 a.m. Resync gives builders and operators the same self-healing superpowers."
+    },
+    {
+      "title": "Community templates",
+      "body": "Share and remix workflows. Every template you publish helps someone ship faster—and earns visibility in our community gallery."
+    },
+    {
+      "title": "Return value",
+      "body": "Your workflow library, credits, and exports stay with you. Come back for the next launch, migration, or incident—your canvas is waiting."
+    }
+  ],
+  "templates": [
+    {
+      "id": "tpl-ecommerce-recovery",
+      "name": "E‑commerce checkout recovery",
+      "slug": "checkout-recovery",
+      "category": "Commerce",
+      "description": "Heal missing shipping fields and retry payment webhooks automatically.",
+      "uses": 12400,
+      "nodes": ["Checkout API", "Schema patch", "Notify team"]
+    },
+    {
+      "id": "tpl-saas-onboarding",
+      "name": "SaaS user onboarding",
+      "slug": "saas-onboarding",
+      "category": "Growth",
+      "description": "Validate signup payloads, fallback CRM sync, and welcome email dispatch.",
+      "uses": 8900,
+      "nodes": ["Auth signup", "Email valid?", "Patch profile"]
+    },
+    {
+      "id": "tpl-devops-incident",
+      "name": "Incident auto-remediation",
+      "slug": "incident-remediation",
+      "category": "DevOps",
+      "description": "Detect alert webhooks, run fallback health checks, post to Slack.",
+      "uses": 15200,
+      "nodes": ["Pager alert", "Health probe", "Restart policy"]
+    },
+    {
+      "id": "tpl-nonprofit-intake",
+      "name": "Purpose-driven intake forms",
+      "slug": "nonprofit-intake",
+      "category": "Community",
+      "description": "Normalize volunteer applications and sync to your database with self-healing.",
+      "uses": 4300,
+      "nodes": ["Form submit", "Normalize", "Fix required fields"]
+    }
+  ],
+  "tiers": [
+    {
+      "id": "FREE",
+      "name": "Community",
+      "priceLabel": "$0",
+      "highlighted": false,
+      "features": [
+        "Visual workflow builder",
+        "500 self-heal credits / mo",
+        "Community templates",
+        "PWA offline drafts"
+      ]
+    },
+    {
+      "id": "STARTER",
+      "name": "Starter",
+      "priceLabel": "$29",
+      "highlighted": false,
+      "features": [
+        "Everything in Community",
+        "5,000 credits / mo",
+        "Email support",
+        "Code export to Next.js"
+      ]
+    },
+    {
+      "id": "PRO",
+      "name": "Pro",
+      "priceLabel": "$99",
+      "highlighted": true,
+      "features": [
+        "Everything in Starter",
+        "25,000 credits / mo",
+        "Team roles & audit log",
+        "Priority self-healing",
+        "Outbound webhooks"
+      ]
+    },
+    {
+      "id": "ENTERPRISE",
+      "name": "Enterprise",
+      "priceLabel": "Custom",
+      "highlighted": false,
+      "features": [
+        "Unlimited orgs & SSO",
+        "Dedicated success engineer",
+        "Custom SLAs & VPC options",
+        "Community spotlight & co-marketing"
+      ]
+    }
+  ],
+  "dashboardMetrics": [
+    { "label": "Executions (24h)", "value": "1,284", "delta": "+12%" },
+    { "label": "Self-heal rate", "value": "94.2%", "delta": "+3.1%" },
+    { "label": "Credits used", "value": "3,420", "delta": "68% of plan" },
+    { "label": "Saved workflows", "value": "18", "delta": "2 drafts offline" }
+  ],
+  "telemetry": [
+    { "time": "2m ago", "workflow": "checkout-recovery", "status": "SELF_HEALED", "duration": "842ms" },
+    { "time": "18m ago", "workflow": "saas-onboarding", "status": "SUCCESS", "duration": "210ms" },
+    { "time": "1h ago", "workflow": "incident-remediation", "status": "FALLBACK", "duration": "1.2s" },
+    { "time": "3h ago", "workflow": "nonprofit-intake", "status": "SUCCESS", "duration": "390ms" }
+  ],
+  "resources": [
+    { "title": "Self-healing playbooks", "desc": "When to patch schema vs. trigger fallback endpoints." },
+    { "title": "Template authoring guide", "desc": "Publish flows and qualify for community revenue share." },
+    { "title": "Stripe + Supabase setup", "desc": "Connect billing and multi-tenant RLS." },
+    { "title": "Customer story: nonprofit intake", "desc": "From 40% failures to 99% healed runs." }
+  ],
+  "partners": {
+    "daniel": "Daniel Noel Mcgarry",
+    "brooke": "Brooke Caroline Hunt",
+    "split": "50% / 50%",
+    "region": "NSW, Australia"
+  },
+  "github": {
+    "owner": "dan88-mac",
+    "repo": "https-github.com-DannybrookeAI-dna-digital-guide",
+    "branch": "main"
+  },
+  "contracts": [
+    {
+      "title": "Daniel — complete pack (PDF)",
+      "path": "pdf-deliverables/daniel-noel-mcgarry/Resync-AI-Complete-Package-daniel-noel-mcgarry.pdf"
+    },
+    {
+      "title": "Brooke — complete pack (PDF)",
+      "path": "pdf-deliverables/brooke-caroline-hunt/Resync-AI-Complete-Package-brooke-caroline-hunt.pdf"
+    },
+    {
+      "title": "50/50 partnership agreement (read & sign)",
+      "path": "docs/business-legal/03-PARTNERSHIP-AND-OWNERSHIP-AGREEMENT.md"
+    },
+    {
+      "title": "Australia NSW — ABN & Pty Ltd steps",
+      "path": "docs/business-legal/12-AUSTRALIA-NSW-REGISTRATION-AND-NEXT-STEPS.md"
+    },
+    {
+      "title": "Next steps (deploy + legal)",
+      "path": "NEXT-STEPS-DANIEL-BROOKE.md"
+    }
+  ],
+  "nav": [
+    { "id": "home", "label": "Home" },
+    { "id": "templates", "label": "Templates" },
+    { "id": "community", "label": "Community" },
+    { "id": "contracts", "label": "Contracts" },
+    { "id": "about", "label": "Mission" },
+    { "id": "pricing", "label": "Pricing" },
+    { "id": "resources", "label": "Resources" },
+    { "id": "dashboard", "label": "Dashboard" },
+    { "id": "builder", "label": "Builder" },
+    { "id": "login", "label": "Sign in" }
+  ]
+}

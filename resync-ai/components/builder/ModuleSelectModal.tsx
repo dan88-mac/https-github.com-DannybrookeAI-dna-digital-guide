@@ -268,7 +268,7 @@ export function ModuleSelectModal({
   }, [filteredModules]);
 
   const moduleEntries = useMemo(
-    () => flatList.filter((e): e is FlatEntry & { mod: WorkflowModule; moduleIndex: number } => e.kind === "module"),
+    () => flatList.filter((e): e is Extract<FlatEntry, { kind: "module" }> => e.kind === "module"),
     [flatList],
   );
 

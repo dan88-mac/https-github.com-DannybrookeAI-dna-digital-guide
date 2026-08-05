@@ -1,10 +1,10 @@
-# Resync AI — Planning & Blueprint
+# Resync AI — Planning, Product & Partner Documentation
 
-This repository contains the **Master Deployment Prompt & Blueprint** for building Resync AI in Cursor IDE.
+| Area | Location |
+|------|----------|
+| **SaaS application** | [`resync-ai/`](resync-ai/) — Next.js product (builder, billing, community) |
+| **Technical blueprint** | [docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md](docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md) |
+| **Business & legal (50/50)** | [docs/business-legal/01-MASTER-INDEX.md](docs/business-legal/01-MASTER-INDEX.md) |
+| **PDF packs (Daniel & Brooke)** | [pdf-deliverables/](pdf-deliverables/) — run `./scripts/generate-partner-pdf-pack.sh` |
 
-| Document | Purpose |
-|----------|---------|
-| [docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md](docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md) | Full architecture, modules, file tree, env matrix, build order, scorecard |
-| [docs/CURSOR_ONE_SHOT_PROMPT.md](docs/CURSOR_ONE_SHOT_PROMPT.md) | Short copy-paste prompt to start an agent build |
-
-To execute the build, open the blueprint in Cursor and run an agent with the one-shot prompt or the system instruction section at the bottom of the blueprint.
+**Co-founders:** Daniel Noel Mcgarry & Brooke Caroline Hunt — **50% / 50%** ownership framework (draft — legal review required).

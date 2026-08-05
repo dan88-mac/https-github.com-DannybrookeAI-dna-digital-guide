@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    paths: ["resync-ai/**"]
+  pull_request:
+    paths: ["resync-ai/**"]
+
+defaults:
+  run:
+    working-directory: resync-ai
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: resync-ai/package-lock.json
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder
+          NEXT_PUBLIC_APP_URL: http://localhost:3000

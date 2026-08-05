@@ -2,5 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "installCommand": "npm install --prefix resync-ai",
-  "buildCommand": "npm run build --prefix resync-ai"
+  "buildCommand": "npm run build --prefix resync-ai",
+  "env": {
+    "NEXT_PUBLIC_APP_URL": "https://placeholder.vercel.app",
+    "NEXT_PUBLIC_SUPABASE_URL": "https://placeholder.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "placeholder-anon-key"
+  }
 }

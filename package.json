@@ -1,0 +1,12 @@
+{
+  "name": "dna-digital-guide",
+  "private": true,
+  "description": "Resync AI monorepo. Set Vercel Root Directory to resync-ai (recommended) or use root vercel.json.",
+  "scripts": {
+    "dev": "npm run dev --prefix resync-ai",
+    "build": "npm run build --prefix resync-ai",
+    "start": "npm run start --prefix resync-ai",
+    "lint": "npm run lint --prefix resync-ai",
+    "typecheck": "npm run typecheck --prefix resync-ai"
+  }
+}

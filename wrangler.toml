@@ -1,0 +1,9 @@
+# Cloudflare Pages — put this in repo root; in dashboard set:
+# Build command: (leave empty)
+# Build output directory: koder-pack
+
+name = "resync-ai-preview"
+compatibility_date = "2024-01-01"
+
+[site]
+  bucket = "./koder-pack"

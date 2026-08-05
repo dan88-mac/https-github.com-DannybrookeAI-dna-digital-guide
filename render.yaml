@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: resync-preview
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./koder-pack
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

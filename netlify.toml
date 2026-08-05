@@ -1,0 +1,6 @@
+# Netlify — static Resync preview (iPhone Safari)
+# Import GitHub repo — no build step required
+
+[build]
+  publish = "koder-pack"
+  command = "echo Static preview"

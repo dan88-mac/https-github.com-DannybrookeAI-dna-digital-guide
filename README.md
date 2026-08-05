@@ -2,6 +2,7 @@
 
 | Area | Location |
 |------|----------|
+| **Vercel broken? Other hosts** | **[IPHONE-HOSTING-ALTERNATIVES.md](IPHONE-HOSTING-ALTERNATIVES.md)** ← Netlify, Cloudflare, Render |
 | **View on iPhone (Safari + Files)** | [IPHONE-VIEW-AND-SAVE.md](IPHONE-VIEW-AND-SAVE.md) |
 | **Koder preview (5 files)** | [`koder-pack/`](koder-pack/) |
 | **SaaS application** | [`resync-ai/`](resync-ai/) — deploy via Vercel |

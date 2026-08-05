@@ -24,8 +24,18 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/multimodal" className="hover:text-white">
+                Multimodal
+              </Link>
+            </li>
+            <li>
               <Link href="/marketplace" className="hover:text-white">
                 Marketplace
+              </Link>
+            </li>
+            <li>
+              <Link href="/overview-score" className="hover:text-white">
+                Overview score
               </Link>
             </li>
             <li>

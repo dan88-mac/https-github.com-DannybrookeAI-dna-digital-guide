@@ -54,15 +54,15 @@ const PAGE_ROUTES: Record<AgentPage, string> = {
   community: "/community",
   builder: "/builder",
   studio: "/studio",
-  multimodal: "/builder",
+  multimodal: "/multimodal",
   vision: "/vision",
   privacy: "/privacy",
   terms: "/terms",
   about: "/about",
   templates: "/templates",
   dashboard: "/dashboard",
-  "overview-score": "/builder?panel=refinement",
-  marketplace: "/community?filter=marketplace",
+  "overview-score": "/overview-score",
+  marketplace: "/marketplace",
 };
 
 type ToolName =
@@ -413,7 +413,7 @@ function toolExplainPage(page?: string): { reply: string; actions: AgentAction[]
     marketplace:
       "**Marketplace** — buy and sell paid workflows via Community. Standard fee is 20% total (10% buyer + 10% seller).",
     "overview-score":
-      "**Overview / Refinement score** — a Pro+ quality metric in the builder's Refinement tab. Scores node diversity, connectivity, heal coverage, and production readiness.",
+      "**Overview integrity score** — dedicated page at /overview-score with seven pillars, engineer blueprint, and marketplace eligibility. Builder's Refinement tab shows a live preview.",
   };
 
   const text =

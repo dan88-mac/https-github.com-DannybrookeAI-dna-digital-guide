@@ -230,7 +230,13 @@ export function MarketplaceClient() {
     <div className="space-y-12">
       <div>
         <p className="text-xs uppercase tracking-wider text-indigo-400">Official marketplace</p>
-        <h1 className="mt-1 text-4xl font-bold text-white">a-sync approved workflows</h1>
+        <h1 className="mt-1 flex flex-wrap items-center gap-3 text-4xl font-bold text-white">
+          a-sync approved workflows
+          <AgentHelpIcon
+            size="md"
+            prompt="Which official workflows are free vs paid, and how do I buy one?"
+          />
+        </h1>
         <p className="mt-4 max-w-2xl text-zinc-400">
           Battle-tested official workflows from the Resync team. Free templates for everyone,
           subscription bundles for Builder and above, and premium paid flows for enterprise patterns.

@@ -2,26 +2,21 @@
 
 Your app lives in **`resync-ai/`**. Production **`main`** must include that folder (not README-only).
 
-## If your build log looks like this
+## Required: Root Directory = `resync-ai`
 
-```text
-Cloning ... (Branch: cursor/fix-vercel-deploy-b046, Commit: 73b0dc7)
-Running "install" command: `npm install --prefix resync-ai`...
-npm warn deprecated ...
-```
-
-- **`npm warn deprecated`** during install is normal — not a failure.
-- **`npm install --prefix resync-ai`** means **Root Directory is still empty** (repo root). That can work, but for Next.js the reliable fix is **Root Directory = `resync-ai`** (see below).
-- An old commit like **`73b0dc7`** misses TypeScript and test fixes. Use **`main`** or **`cursor/fix-vercel-deploy-b046`** at **`4768df3`** or newer (both are synced now).
-
-**Vercel → Settings → Git → Production Branch:** set to **`main`** (recommended), then **Redeploy**.
-
-## Option A — Existing Vercel project (fastest)
+Vercel marks this repo as a monorepo. Preview/production builds fail if the project Root Directory is empty (repo root), because Next.js output lives under `resync-ai/.next`.
 
 1. [Vercel Dashboard](https://vercel.com/dashboard) → your project → **Settings** → **General**.
-2. **Root Directory** → **Edit** → enter `resync-ai` → **Save**.  
-   After this, install logs should show plain `npm install` (no `--prefix`), and Next.js is detected correctly.
-3. **Settings** → **Environment Variables** — add (Production, Preview, Development):
+2. **Root Directory** → **Edit** → enter `resync-ai` → **Save**.
+3. Redeploy the latest Deployment (or push a new commit).
+
+After this, install logs should show plain `npm install` (no `--prefix`), and Next.js is detected correctly.
+
+Root `vercel.json` also includes a `builds` entry pointing at `resync-ai/package.json` as a fallback when Root Directory cannot be changed.
+
+## Environment Variables
+
+**Settings** → **Environment Variables** — add (Production, Preview, Development):
 
 | Variable | Value (first deploy) |
 |----------|------------------------|
@@ -32,9 +27,11 @@ npm warn deprecated ...
 
 Optional later: `OPENAI_API_KEY`, `STRIPE_*`.
 
-4. **Deployments** → **Redeploy** latest **Production** (or push to `main`).
+Do **not** rely on placeholder URLs in `vercel.json` — configure real values in the dashboard.
 
-If you **cannot** set Root Directory, leave it blank — root `vercel.json` builds `resync-ai/` via `npm run build --prefix resync-ai`.
+## Production branch
+
+**Settings** → **Git** → **Production Branch:** `main`, then **Redeploy**.
 
 ## Option B — New import (Deploy button)
 
@@ -47,3 +44,10 @@ If you **cannot** set Root Directory, leave it blank — root `vercel.json` buil
 - Supabase SQL: run files in `resync-ai/supabase/migrations/` in order.
 
 Full walkthrough: [resync-ai/DEPLOY-FROM-GITHUB.md](resync-ai/DEPLOY-FROM-GITHUB.md)
+
+## Local verify
+
+```bash
+bash scripts/vercel-build.sh
+# or: cd resync-ai && npm install && npm run build
+```

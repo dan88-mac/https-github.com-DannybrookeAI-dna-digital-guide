@@ -11,6 +11,9 @@ const PAGE_PROMPTS: Record<string, string> = {
   dashboard: "What metrics can I see on the dashboard?",
   templates: "How do I use a community template?",
   vision: "Explain multimodal vision modules",
+  multimodal: "Help me pick one multimodal module for image OCR",
+  marketplace: "Which official workflows are free vs paid?",
+  "overview-score": "Explain the overview integrity score pillars",
   home: "What can the a-sync agent help me with?",
 };
 

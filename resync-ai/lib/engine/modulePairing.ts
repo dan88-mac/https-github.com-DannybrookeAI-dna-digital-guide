@@ -155,3 +155,118 @@ export function getAllLibraries(): string[] {
   }
   return Array.from(libs).sort();
 }
+
+/** Category adjacency for interconnection suggestions across hundreds of modules. */
+export type LinkType = "data" | "control" | "fallback" | "schedule";
+
+const CATEGORY_LINKS: Record<string, Array<{ category: string; linkType: LinkType; note: string }>> = {
+  trigger: [
+    { category: "http", linkType: "data", note: "Fetch after start" },
+    { category: "vision", linkType: "data", note: "Ingest media" },
+    { category: "schedule", linkType: "schedule", note: "Time-box runs" },
+  ],
+  vision: [
+    { category: "text", linkType: "data", note: "Reason over detections" },
+    { category: "ml", linkType: "data", note: "Embed or classify" },
+    { category: "storage", linkType: "data", note: "Persist assets" },
+  ],
+  voice: [
+    { category: "text", linkType: "data", note: "Process transcripts" },
+    { category: "notify", linkType: "control", note: "Alert on keywords" },
+  ],
+  text: [
+    { category: "agent", linkType: "control", note: "Tool-call loop" },
+    { category: "condition", linkType: "control", note: "Branch on output" },
+    { category: "human", linkType: "control", note: "Approve sensitive copy" },
+  ],
+  http: [
+    { category: "selfHeal", linkType: "fallback", note: "Recover flaky APIs" },
+    { category: "transform", linkType: "data", note: "Shape responses" },
+  ],
+  library: [
+    { category: "ml", linkType: "data", note: "Wire SDK into ML steps" },
+    { category: "agent", linkType: "control", note: "Expose as agent tool" },
+  ],
+  schedule: [
+    { category: "data", linkType: "schedule", note: "Poll warehouses" },
+    { category: "devops", linkType: "schedule", note: "Health checks" },
+  ],
+  commerce: [
+    { category: "notify", linkType: "control", note: "Order confirmations" },
+    { category: "integrate", linkType: "data", note: "CRM / ERP sync" },
+  ],
+  selfHeal: [
+    { category: "http", linkType: "fallback", note: "Retry healed call" },
+    { category: "notify", linkType: "control", note: "Escalate failures" },
+  ],
+};
+
+export function suggestLinks(
+  sourceId: string,
+  targetId: string,
+): { allowed: boolean; linkType: LinkType; note: string } {
+  const source = getModule(sourceId);
+  const target = getModule(targetId);
+  if (!source || !target) {
+    return { allowed: false, linkType: "data", note: "Unknown module id" };
+  }
+  if (sourceId === targetId) {
+    return { allowed: false, linkType: "control", note: "Cannot link a module to itself" };
+  }
+  if (target.category === "trigger") {
+    return { allowed: false, linkType: "control", note: "Triggers cannot accept inbound edges" };
+  }
+
+  const rule = (CATEGORY_LINKS[source.category] ?? []).find((r) => r.category === target.category);
+  if (rule) return { allowed: true, linkType: rule.linkType, note: rule.note };
+
+  const tagOverlap =
+    source.pairingTags?.filter((t) => target.pairingTags?.includes(t)).length ?? 0;
+  if (tagOverlap > 0) {
+    return {
+      allowed: true,
+      linkType: "data",
+      note: `Compatible via shared tags (${tagOverlap})`,
+    };
+  }
+
+  return {
+    allowed: true,
+    linkType: "data",
+    note: "Generic data edge — validate schemas in the inspector",
+  };
+}
+
+export function autoWireHints(
+  selectedIds: string[],
+): Array<{ source: string; target: string; reason: string }> {
+  const hints: Array<{ source: string; target: string; reason: string }> = [];
+  const unique = [...new Set(selectedIds)].filter((id) => getModule(id));
+
+  for (const sourceId of unique) {
+    const recs = getRecommendedPairs(sourceId).slice(0, 2);
+    for (const rec of recs) {
+      if (!unique.includes(rec.moduleId)) continue;
+      const link = suggestLinks(sourceId, rec.moduleId);
+      if (!link.allowed) continue;
+      hints.push({
+        source: sourceId,
+        target: rec.moduleId,
+        reason: `${rec.reason} (${link.linkType})`,
+      });
+    }
+  }
+
+  return hints.slice(0, 24);
+}
+
+/** Category → starter modules for interconnection browsing. */
+export function getCategoryBridge(category: string): PairRecommendation[] {
+  const mods = MODULE_CATALOG.filter((m) => m.category === category).slice(0, 6);
+  return mods.map((m, i) => ({
+    moduleId: m.id,
+    label: m.label,
+    reason: m.purpose || m.description,
+    ratio: Math.max(0.4, 0.9 - i * 0.08),
+  }));
+}

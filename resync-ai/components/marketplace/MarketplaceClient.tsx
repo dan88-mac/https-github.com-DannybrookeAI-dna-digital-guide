@@ -17,6 +17,7 @@ import {
   SUBSCRIBER_TIER_KEY,
 } from "@/lib/billing/access";
 import type { SubscriptionTier } from "@/types/database";
+import { AgentHelpIcon } from "@/components/agent/AgentHelpIcon";
 
 const DRAFT_KEY = "resync-workflow-draft";
 

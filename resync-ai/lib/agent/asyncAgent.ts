@@ -242,9 +242,10 @@ function extractCategory(m: string): string | undefined {
   const cats: ModuleCategory[] = [
     "trigger", "vision", "voice", "text", "http", "transform", "condition",
     "selfHeal", "webhook", "human", "delay", "commerce", "devops", "data",
-    "security", "integrate",
+    "security", "integrate", "schedule", "library", "agent", "ml", "media",
+    "notify", "storage", "analytics",
   ];
-  return cats.find((c) => m.includes(c.toLowerCase()));
+  return cats.find((c) => m.includes(c.toLowerCase()) || m.includes(c.replace(/([A-Z])/g, " $1").toLowerCase().trim()));
 }
 
 function extractModuleQuery(m: string): string | undefined {
@@ -452,19 +453,19 @@ function toolQualityTips(context?: string): { reply: string; actions: AgentActio
 
 function toolOverviewScoreInfo(): { reply: string; actions: AgentAction[] } {
   const reply = [
-    "**Overview / Refinement score** (Pro+ feature context):",
+    "**Overview integrity score** (Pro & Enterprise):",
     "",
-    "• Lives in the builder **Refinement** tab",
-    "• Grades A–D from 0–100 based on graph health",
-    "• Measures: node diversity, connectivity, heal coverage, purpose fit, production readiness",
-    "• Community posts display refinement badges when shared",
+    "• Dedicated page at **/overview-score** with engineer blueprint narrative",
+    "• Seven pillars: structure, multimodal coverage, resilience, library grounding, ops maturity, real-world readiness, pairing compliance",
+    "• Builder also shows a live **Refinement** tab score for quick checks",
+    "• Free/Builder tiers see a locked teaser — upgrade unlocks the full scientific report",
     "",
-    "Open the builder and switch to Refinement to see your live score.",
+    "I can open the overview page, or recommend one module that usually raises your score (self-heal, validate, or audit).",
   ].join("\n");
 
   return {
     reply,
-    actions: [{ type: "navigate", path: "/builder?panel=refinement", label: "overview-score" }],
+    actions: [{ type: "navigate", path: "/overview-score", label: "overview-score" }],
   };
 }
 

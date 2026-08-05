@@ -11,6 +11,7 @@ import {
   type WorkflowModule,
 } from "@/lib/engine/moduleCatalog";
 import { getAllLibraries, getRatioHints, getRecommendedPairs } from "@/lib/engine/modulePairing";
+import { AgentHelpIcon } from "@/components/agent/AgentHelpIcon";
 
 const ALL_CATEGORIES = Object.keys(CATEGORY_LABELS) as ModuleCategory[];
 
@@ -160,8 +161,12 @@ export function MultimodalCatalogClient() {
         <p className="text-xs font-semibold uppercase tracking-widest text-indigo-400">
           Resync catalog
         </p>
-        <h1 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">
+        <h1 className="mt-2 inline-flex items-center justify-center gap-2 font-display text-3xl font-bold text-white sm:text-4xl">
           Multimodal function library
+          <AgentHelpIcon
+            size="md"
+            prompt="Help me pick one multimodal module — ask what I'm building first"
+          />
         </h1>
         <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">
           Browse {MODULE_CATALOG.length} workflow modules spanning vision, voice, text, commerce,

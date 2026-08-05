@@ -4,28 +4,11 @@ import { useMemo, useState } from "react";
 import {
   MODULE_CATALOG,
   modulesByCategory,
+  CATEGORY_LABELS,
   type ModuleCategory,
   type WorkflowModule,
 } from "@/lib/engine/moduleCatalog";
-
-const CATEGORY_LABELS: Record<ModuleCategory, string> = {
-  trigger: "Triggers",
-  vision: "Vision",
-  voice: "Voice",
-  text: "Text / LLM",
-  http: "HTTP",
-  transform: "Transform",
-  condition: "Conditions",
-  selfHeal: "Self-heal",
-  webhook: "Webhooks",
-  human: "Human loop",
-  delay: "Delay",
-  commerce: "Commerce",
-  devops: "DevOps",
-  data: "Data",
-  security: "Security",
-  integrate: "Integrations",
-};
+import { ModuleSelectModal } from "@/components/builder/ModuleSelectModal";
 
 function ModuleItem({
   mod,
@@ -67,6 +50,7 @@ export function ModulePalette({
   maxNodes: number;
 }) {
   const [query, setQuery] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
   const atCap = nodeCount >= maxNodes;
 
   const grouped = useMemo(() => modulesByCategory(), []);
@@ -93,7 +77,16 @@ export function ModulePalette({
   return (
     <aside className="glass flex h-full w-full flex-col overflow-hidden rounded-xl lg:w-56 xl:w-64">
       <div className="border-b border-resync-border/80 p-3">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Modules</h3>
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Modules</h3>
+          <button
+            type="button"
+            onClick={() => setModalOpen(true)}
+            className="rounded-md border border-indigo-500/40 px-2 py-0.5 text-[10px] font-medium text-indigo-300 hover:bg-indigo-950/40"
+          >
+            Browse all
+          </button>
+        </div>
         <input
           type="search"
           value={query}
@@ -133,6 +126,14 @@ export function ModulePalette({
           Node cap reached ({maxNodes}). Remove nodes to add more.
         </p>
       )}
+
+      <ModuleSelectModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onAddModule={onAddModule}
+        nodeCount={nodeCount}
+        maxNodes={maxNodes}
+      />
     </aside>
   );
 }

@@ -13,7 +13,7 @@ import {
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { handleWorkerMessage } from "@/workers/nodeGraphLogic";
 import { triggerHaptic } from "@/lib/mobile/nativePlugins";
 import { CodeExportModal } from "@/components/builder/CodeExportModal";
@@ -25,8 +25,11 @@ import { NodeInspector } from "@/components/builder/NodeInspector";
 import { RefinementPanel } from "@/components/builder/RefinementPanel";
 import { DemoPlayground } from "@/components/builder/DemoPlayground";
 import { translateIdeaToGraph, type GraphScale } from "@/lib/engine/ideaToCanvas";
-import { getModule } from "@/lib/engine/moduleCatalog";
+import { getModule, isValidModuleId } from "@/lib/engine/moduleCatalog";
 import { COMMUNITY_TEMPLATES } from "@/lib/community/content";
+import { OFFICIAL_WORKFLOWS } from "@/lib/marketplace/officialWorkflows";
+import { canAccessOverviewScore, readSubscriberTier } from "@/lib/billing/access";
+import Link from "next/link";
 import { getStudioDesign } from "@/lib/studio/store";
 import { parseWorkflowNodeType } from "@/schemas/workflow";
 
@@ -88,9 +91,11 @@ const initialFlow = graphToFlow({
 export function NodeBoard({
   templateSlug,
   designId,
+  addModule,
 }: {
   templateSlug?: string;
   designId?: string;
+  addModule?: string;
 }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialFlow.nodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>(initialFlow.edges);
@@ -103,6 +108,9 @@ export function NodeBoard({
   const [validation, setValidation] = useState<string | null>(null);
   const [saveToast, setSaveToast] = useState<string | null>(null);
   const [demoTrigger, setDemoTrigger] = useState(0);
+  const [subscriberTier, setSubscriberTier] = useState<"FREE" | "STARTER" | "PRO" | "ENTERPRISE">("FREE");
+  const hasOverviewAccess = canAccessOverviewScore(subscriberTier);
+  const addModuleHandled = useRef(false);
 
   const nodeTypes = useMemo(() => builderNodeTypes, []);
   const selectedNode = nodes.find((n) => n.id === selectedNodeId) ?? null;
@@ -119,6 +127,10 @@ export function NodeBoard({
   );
 
   useEffect(() => {
+    setSubscriberTier(readSubscriberTier());
+  }, []);
+
+  useEffect(() => {
     if (designId) {
       const design = getStudioDesign(designId);
       if (design?.graph?.nodes?.length) {
@@ -131,6 +143,13 @@ export function NodeBoard({
     }
 
     if (templateSlug) {
+      const official = OFFICIAL_WORKFLOWS.find((t) => t.slug === templateSlug);
+      if (official) {
+        const flow = graphToFlow(official.graph as Parameters<typeof graphToFlow>[0]);
+        applyGraph(flow.nodes, flow.edges, `Loaded official workflow: ${official.title}`);
+        setIdea(official.description);
+        return;
+      }
       const tpl = COMMUNITY_TEMPLATES.find((t) => t.slug === templateSlug);
       if (tpl) {
         const flow = graphToFlow(tpl.graph as Parameters<typeof graphToFlow>[0]);
@@ -207,6 +226,24 @@ export function NodeBoard({
     },
     [nodes.length, setNodes],
   );
+
+  useEffect(() => {
+    if (!addModule || addModuleHandled.current) return;
+    if (!isValidModuleId(addModule)) return;
+    addModuleHandled.current = true;
+    addModuleNode(addModule);
+  }, [addModule, addModuleNode]);
+
+  useEffect(() => {
+    const onAddModule = (e: Event) => {
+      const detail = (e as CustomEvent<{ moduleId: string }>).detail;
+      if (detail?.moduleId && isValidModuleId(detail.moduleId)) {
+        addModuleNode(detail.moduleId);
+      }
+    };
+    window.addEventListener("resync:add-module", onAddModule);
+    return () => window.removeEventListener("resync:add-module", onAddModule);
+  }, [addModuleNode]);
 
   const updateNodeData = useCallback(
     (nodeId: string, data: Record<string, unknown>) => {
@@ -285,7 +322,27 @@ export function NodeBoard({
         />
         <div className="flex flex-wrap items-center gap-2">
           <ScaleSlider value={scale} onChange={handleScaleChange} />
-          <div className="flex flex-1 flex-wrap justify-end gap-2">
+          <div className="flex flex-1 flex-wrap items-center justify-end gap-2">
+          <Link
+            href="/overview-score"
+            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium backdrop-blur-md transition ${
+              hasOverviewAccess
+                ? "border-indigo-500/40 bg-indigo-950/40 text-indigo-200 hover:bg-indigo-950/60"
+                : "border-resync-border/80 bg-resync-surface/50 text-zinc-400 hover:bg-white/5"
+            }`}
+          >
+            {!hasOverviewAccess && (
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            )}
+            Overview score
+          </Link>
             <button
               type="button"
               onClick={validateGraph}

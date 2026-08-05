@@ -3,9 +3,9 @@ name: Deploy Resync AI CI
 on:
   push:
     branches: [main, cursor/resync-ai-full-build-86ce]
-    paths: ["resync-ai/**"]
+    paths: ["resync-ai/**", ".github/workflows/resync-ai-ci.yml"]
   pull_request:
-    paths: ["resync-ai/**"]
+    paths: ["resync-ai/**", ".github/workflows/resync-ai-ci.yml"]
 
 defaults:
   run:

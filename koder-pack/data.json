@@ -76,27 +76,28 @@
     },
     {
       "id": "STARTER",
-      "name": "Starter",
-      "priceLabel": "$29",
+      "name": "Builder",
+      "priceLabel": "$39",
       "highlighted": false,
       "features": [
-        "Everything in Community",
-        "5,000 credits / mo",
-        "Email support",
-        "Code export to Next.js"
+        "Full node palette",
+        "Idea-to-canvas generation",
+        "Code export to Next.js",
+        "8,000 credits / mo",
+        "Publish free community templates"
       ]
     },
     {
       "id": "PRO",
       "name": "Pro",
-      "priceLabel": "$99",
+      "priceLabel": "$129",
       "highlighted": true,
       "features": [
-        "Everything in Starter",
-        "25,000 credits / mo",
-        "Team roles & audit log",
+        "Monster scale — up to 50 modules",
+        "Sell on the marketplace",
         "Priority self-healing",
-        "Outbound webhooks"
+        "Team roles & audit log",
+        "40,000 credits / mo"
       ]
     },
     {
@@ -105,10 +106,10 @@
       "priceLabel": "Custom",
       "highlighted": false,
       "features": [
-        "Unlimited orgs & SSO",
-        "Dedicated success engineer",
-        "Custom SLAs & VPC options",
-        "Community spotlight & co-marketing"
+        "SSO & organization controls",
+        "Custom SLAs & integrations",
+        "12% total marketplace fee (vs 20%)",
+        "Volume credits & VPC options"
       ]
     }
   ],

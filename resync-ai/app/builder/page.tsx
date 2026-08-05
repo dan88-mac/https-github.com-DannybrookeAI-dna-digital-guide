@@ -3,7 +3,7 @@ import { NodeBoard } from "@/components/builder/NodeBoard";
 export default function BuilderPage({
   searchParams,
 }: {
-  searchParams: { template?: string };
+  searchParams: { template?: string; design?: string; studio?: string };
 }) {
   return (
     <div className="mx-auto max-w-[1600px] px-4 py-6">
@@ -15,7 +15,7 @@ export default function BuilderPage({
           inspect nodes, score resilience, and simulate execution before export.
         </p>
       </div>
-      <NodeBoard templateSlug={searchParams.template} />
+      <NodeBoard templateSlug={searchParams.template} designId={searchParams.design} />
     </div>
   );
 }

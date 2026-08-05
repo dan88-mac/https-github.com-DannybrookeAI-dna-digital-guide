@@ -27,6 +27,7 @@ import { DemoPlayground } from "@/components/builder/DemoPlayground";
 import { translateIdeaToGraph, type GraphScale } from "@/lib/engine/ideaToCanvas";
 import { getModule } from "@/lib/engine/moduleCatalog";
 import { COMMUNITY_TEMPLATES } from "@/lib/community/content";
+import { getStudioDesign } from "@/lib/studio/store";
 import { parseWorkflowNodeType } from "@/schemas/workflow";
 
 const MAX_NODES = 50;
@@ -84,7 +85,13 @@ const initialFlow = graphToFlow({
   edges: [],
 });
 
-export function NodeBoard({ templateSlug }: { templateSlug?: string }) {
+export function NodeBoard({
+  templateSlug,
+  designId,
+}: {
+  templateSlug?: string;
+  designId?: string;
+}) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialFlow.nodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>(initialFlow.edges);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
@@ -112,10 +119,21 @@ export function NodeBoard({ templateSlug }: { templateSlug?: string }) {
   );
 
   useEffect(() => {
+    if (designId) {
+      const design = getStudioDesign(designId);
+      if (design?.graph?.nodes?.length) {
+        const flow = graphToFlow(design.graph);
+        applyGraph(flow.nodes, flow.edges, design.summary || `Loaded studio design`);
+        setIdea(design.idea || DEFAULT_IDEA);
+        setScale(design.scale);
+        return;
+      }
+    }
+
     if (templateSlug) {
       const tpl = COMMUNITY_TEMPLATES.find((t) => t.slug === templateSlug);
       if (tpl) {
-        const flow = graphToFlow(tpl.graph);
+        const flow = graphToFlow(tpl.graph as Parameters<typeof graphToFlow>[0]);
         applyGraph(flow.nodes, flow.edges, `Loaded template: ${tpl.name}`);
         setIdea(tpl.description);
         return;
@@ -135,7 +153,7 @@ export function NodeBoard({ templateSlug }: { templateSlug?: string }) {
     } catch {
       /* ignore corrupt draft */
     }
-  }, [templateSlug, applyGraph]);
+  }, [templateSlug, designId, applyGraph]);
 
   const generateFromIdea = useCallback(
     (ideaText?: string, scaleOverride?: GraphScale) => {

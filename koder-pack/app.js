@@ -73,22 +73,22 @@ const FALLBACK_DATA = {
       features: ["Visual builder", "500 credits/mo", "Templates", "Offline drafts"],
     },
     {
-      name: "Starter",
-      priceLabel: "$29",
+      name: "Builder",
+      priceLabel: "$39",
       highlighted: false,
-      features: ["5,000 credits/mo", "Email support", "Code export"],
+      features: ["Full palette", "Idea-to-canvas", "Export", "8k credits"],
     },
     {
       name: "Pro",
-      priceLabel: "$99",
+      priceLabel: "$129",
       highlighted: true,
-      features: ["25,000 credits/mo", "Team roles", "Priority heal", "Webhooks"],
+      features: ["50 modules", "Marketplace sell", "Priority heal", "40k credits"],
     },
     {
       name: "Enterprise",
       priceLabel: "Custom",
       highlighted: false,
-      features: ["SSO", "Dedicated success", "SLA", "Co-marketing"],
+      features: ["SSO", "SLA", "12% marketplace fee", "Volume credits"],
     },
   ],
   dashboardMetrics: [

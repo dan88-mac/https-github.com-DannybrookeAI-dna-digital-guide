@@ -123,6 +123,7 @@ type ModulePartial = Omit<WorkflowModule, "purpose" | "uses" | "libraries" | "in
 
 export function defineModule(partial: ModulePartial): WorkflowModule {
   const category = partial.category;
+  const { color: colorOverride, ...rest } = partial;
   return {
     purpose: partial.description,
     uses: [],
@@ -132,9 +133,8 @@ export function defineModule(partial: ModulePartial): WorkflowModule {
     configSchema: {},
     pairingTags: [category],
     instructions: `Configure ${partial.label} via the node inspector JSON fields.`,
-    color: CATEGORY_COLORS[category],
-    ...partial,
-    color: partial.color ?? CATEGORY_COLORS[category],
+    ...rest,
+    color: colorOverride ?? CATEGORY_COLORS[category],
   };
 }
 

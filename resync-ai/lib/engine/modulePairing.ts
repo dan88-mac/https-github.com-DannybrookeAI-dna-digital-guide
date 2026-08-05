@@ -117,18 +117,20 @@ export function getRecommendedPairs(moduleId: string): PairRecommendation[] {
   if (!mod) return [];
 
   const explicit = PAIRING_GRAPH[moduleId] ?? [];
-  const fromExplicit: PairRecommendation[] = explicit
-    .map((p) => {
-      const target = getModule(p.moduleId);
-      if (!target) return null;
-      return {
-        moduleId: p.moduleId,
-        label: target.label,
-        reason: p.reason,
-        ratio: p.ratio,
-      };
-    })
-    .filter((p): p is PairRecommendation => p !== null);
+  const fromExplicit: PairRecommendation[] = [];
+  for (const p of explicit) {
+    const target = getModule(p.moduleId);
+    if (!target) continue;
+    const rec: PairRecommendation = {
+      moduleId: p.moduleId,
+      label: target.label,
+      reason: p.reason,
+    };
+    if (typeof p.ratio === "number") {
+      rec.ratio = p.ratio;
+    }
+    fromExplicit.push(rec);
+  }
 
   if (fromExplicit.length > 0) return fromExplicit;
   return pairsFromTags(mod);

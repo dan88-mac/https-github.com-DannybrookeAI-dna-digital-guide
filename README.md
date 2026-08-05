@@ -2,7 +2,9 @@
 
 | Area | Location |
 |------|----------|
-| **Koder iPhone preview (5 files only)** | [`koder-pack/`](koder-pack/) — `index.html`, `styles.css`, `app.js`, `data.json`, `README.md` |
+| **View on iPhone (Safari + Files)** | [IPHONE-VIEW-AND-SAVE.md](IPHONE-VIEW-AND-SAVE.md) |
+| **Koder preview (5 files)** | [`koder-pack/`](koder-pack/) |
+| **SaaS application** | [`resync-ai/`](resync-ai/) — deploy via Vercel |
 | **Technical blueprint** | [docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md](docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md) |
 | **Business & legal (50/50)** | [docs/business-legal/01-MASTER-INDEX.md](docs/business-legal/01-MASTER-INDEX.md) |
 | **PDF packs (Daniel & Brooke)** | [pdf-deliverables/](pdf-deliverables/) — run `./scripts/generate-partner-pdf-pack.sh` |

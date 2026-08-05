@@ -26,6 +26,7 @@ No other file types are required.
 - **Home** — hero, stats, templates, waitlist  
 - **Templates** — gallery; tap → **Builder**  
 - **Community** / **Mission** / **Pricing** / **Resources**  
+- **Contracts** — PDF & legal doc links (Safari)  
 - **Dashboard** — metrics + telemetry table  
 - **Builder** — add nodes, validate, export (preview)  
 - **Sign in** — guest mode → builder  
@@ -33,6 +34,12 @@ No other file types are required.
 ## If `data.json` does not load
 
 Some previews block `fetch` on `file://`. The app **automatically falls back** to embedded data in `app.js` — the UI still works.
+
+## View in iPhone Safari (no Koder)
+
+See repo root **`IPHONE-VIEW-AND-SAVE.md`** — enable GitHub Pages, then open:
+
+`https://dan88-mac.github.io/https-github.com-DannybrookeAI-dna-digital-guide/`
 
 ## Full production app
 

@@ -310,6 +310,40 @@ function viewPricing() {
     </section>`;
 }
 
+function rawGitHubUrl(path) {
+  const g = DATA.github || {
+    owner: "dan88-mac",
+    repo: "https-github.com-DannybrookeAI-dna-digital-guide",
+    branch: "main",
+  };
+  return `https://raw.githubusercontent.com/${g.owner}/${g.repo}/${g.branch}/${path}`;
+}
+
+function viewContracts() {
+  const items = (DATA.contracts || [])
+    .map(
+      (c) => `
+    <a class="card glass contract-link" href="${rawGitHubUrl(c.path)}" target="_blank" rel="noopener"
+       style="display:block;text-decoration:none;color:inherit;margin-bottom:12px">
+      <h3 style="margin:0;color:#a5b4fc">${c.title}</h3>
+      <p style="margin:8px 0 0;font-size:13px;color:var(--muted)">Opens in Safari — PDF or document</p>
+    </a>`
+    )
+    .join("");
+
+  return `
+    <section class="view active">
+      <h1>Contracts &amp; legal packs</h1>
+      <p style="color:var(--muted)">Daniel &amp; Brooke · ${DATA.partners?.split || "50/50"} · ${DATA.partners?.region || "NSW"}</p>
+      <p style="font-size:14px;color:#fbbf24;margin-top:12px">Draft documents — have a NSW solicitor review before signing.</p>
+      <div style="margin-top:24px">${items || "<p>No contract links configured.</p>"}</div>
+      <div class="card glass" style="margin-top:24px">
+        <h3>Save everything to iPhone Files</h3>
+        <p style="color:var(--muted);font-size:14px">GitHub app → this repo → <strong>Download ZIP</strong> → Share → <strong>Save to Files</strong> → folder “Resync AI”.</p>
+      </div>
+    </section>`;
+}
+
 function viewResources() {
   return `
     <section class="view active">
@@ -410,6 +444,7 @@ function render() {
     about: viewAbout,
     pricing: viewPricing,
     resources: viewResources,
+    contracts: viewContracts,
     dashboard: viewDashboard,
     builder: viewBuilder,
     login: viewLogin,

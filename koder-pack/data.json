@@ -136,10 +136,38 @@
     "split": "50% / 50%",
     "region": "NSW, Australia"
   },
+  "github": {
+    "owner": "dan88-mac",
+    "repo": "https-github.com-DannybrookeAI-dna-digital-guide",
+    "branch": "main"
+  },
+  "contracts": [
+    {
+      "title": "Daniel — complete pack (PDF)",
+      "path": "pdf-deliverables/daniel-noel-mcgarry/Resync-AI-Complete-Package-daniel-noel-mcgarry.pdf"
+    },
+    {
+      "title": "Brooke — complete pack (PDF)",
+      "path": "pdf-deliverables/brooke-caroline-hunt/Resync-AI-Complete-Package-brooke-caroline-hunt.pdf"
+    },
+    {
+      "title": "50/50 partnership agreement (read & sign)",
+      "path": "docs/business-legal/03-PARTNERSHIP-AND-OWNERSHIP-AGREEMENT.md"
+    },
+    {
+      "title": "Australia NSW — ABN & Pty Ltd steps",
+      "path": "docs/business-legal/12-AUSTRALIA-NSW-REGISTRATION-AND-NEXT-STEPS.md"
+    },
+    {
+      "title": "Next steps (deploy + legal)",
+      "path": "NEXT-STEPS-DANIEL-BROOKE.md"
+    }
+  ],
   "nav": [
     { "id": "home", "label": "Home" },
     { "id": "templates", "label": "Templates" },
     { "id": "community", "label": "Community" },
+    { "id": "contracts", "label": "Contracts" },
     { "id": "about", "label": "Mission" },
     { "id": "pricing", "label": "Pricing" },
     { "id": "resources", "label": "Resources" },

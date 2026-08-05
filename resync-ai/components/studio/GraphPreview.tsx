@@ -8,25 +8,13 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { useMemo } from "react";
-import { NodeCard } from "@/components/builder/NodeCard";
+import { builderNodeTypes } from "@/components/builder/nodeTypes";
 import type { GraphEdge, GraphNode } from "@/lib/engine/ideaToCanvas";
-
-const nodeTypes = {
-  resync: NodeCard,
-  httpRequest: NodeCard,
-  selfHeal: NodeCard,
-  trigger: NodeCard,
-  condition: NodeCard,
-  transform: NodeCard,
-  webhookOut: NodeCard,
-  vision_ocr: NodeCard,
-  integrate_crm: NodeCard,
-};
 
 function toFlowNodes(nodes: GraphNode[]): Node[] {
   return nodes.map((n) => ({
     id: n.id,
-    type: Object.keys(nodeTypes).includes(n.type) ? n.type : "resync",
+    type: n.type in builderNodeTypes ? n.type : "default",
     position: n.position,
     data: { label: n.data?.label ?? n.type, nodeType: n.type },
   }));
@@ -71,7 +59,7 @@ export function GraphPreview({
       <ReactFlow
         nodes={flowNodes}
         edges={flowEdges}
-        nodeTypes={nodeTypes}
+        nodeTypes={builderNodeTypes}
         fitView
         nodesDraggable={false}
         nodesConnectable={false}

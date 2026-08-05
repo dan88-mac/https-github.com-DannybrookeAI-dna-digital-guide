@@ -34,7 +34,10 @@ export function StudioPageClient() {
 
   const refinement = useMemo(() => {
     if (!graphResult) return null;
-    return calculateModelRefinement(graphResult);
+    return calculateModelRefinement({
+      nodes: graphResult.nodes,
+      edges: graphResult.edges,
+    });
   }, [graphResult]);
 
   const priceCents = useMemo(() => {
@@ -44,19 +47,11 @@ export function StudioPageClient() {
   }, [priceInput]);
 
   const generate = useCallback(() => {
-    const result = translateIdeaToGraph(idea);
-    if (scaleOverride && scaleOverride !== result.scale) {
-      const scaledIdea =
-        scaleOverride === "monster"
-          ? `${idea} and integrate multiple systems with conditional branching and parallel processing`
-          : scaleOverride === "large"
-            ? `${idea} with validation and notification steps`
-            : idea.split(" ").slice(0, 8).join(" ");
-      const scaled = translateIdeaToGraph(scaledIdea);
-      setGraphResult({ ...scaled, scale: scaleOverride });
-    } else {
-      setGraphResult(result);
-    }
+    const result = translateIdeaToGraph(
+      idea,
+      scaleOverride ? { scale: scaleOverride } : undefined,
+    );
+    setGraphResult(result);
     setSavedId(null);
     setShareStatus(null);
   }, [idea, scaleOverride]);

@@ -61,9 +61,19 @@ export function isWorkflowNodeType(value: string): boolean {
   return isValidModuleId(value);
 }
 
+/** Legacy React Flow type aliases from older templates and exports. */
+const LEGACY_NODE_TYPE_ALIASES: Record<string, CoreWorkflowNodeType> = {
+  resync: "httpRequest",
+  step: "transform",
+  default: "httpRequest",
+};
+
 export function parseWorkflowNodeType(value: string | undefined): WorkflowNodeType {
   if (value && isValidModuleId(value)) {
     return value;
+  }
+  if (value && value in LEGACY_NODE_TYPE_ALIASES) {
+    return LEGACY_NODE_TYPE_ALIASES[value];
   }
   return "httpRequest";
 }

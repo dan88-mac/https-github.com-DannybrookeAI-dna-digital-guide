@@ -140,16 +140,15 @@ export function NodeBoard({ templateSlug }: { templateSlug?: string }) {
   const generateFromIdea = useCallback(
     (ideaText?: string, scaleOverride?: GraphScale) => {
       const text = (ideaText ?? idea).trim() || DEFAULT_IDEA;
-      const result = translateIdeaToGraph(
-        text,
-        scaleOverride !== undefined ? { scale: scaleOverride } : undefined,
-      );
+      const result = translateIdeaToGraph(text, {
+        scale: scaleOverride ?? scale,
+      });
       const flow = graphToFlow({ nodes: result.nodes, edges: result.edges });
       applyGraph(flow.nodes, flow.edges, result.summary);
       setScale(result.scale);
       void triggerHaptic("medium");
     },
-    [idea, applyGraph],
+    [idea, scale, applyGraph],
   );
 
   const handleScaleChange = useCallback(

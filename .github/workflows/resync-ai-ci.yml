@@ -20,7 +20,17 @@ jobs:
         with:
           node-version: "20"
       - run: npm install
-      - run: npm run typecheck
+      - name: Typecheck
+        run: |
+          set -o pipefail
+          npm run typecheck 2>&1 | tee "${RUNNER_TEMP}/typecheck.log"
+      - name: Report typecheck errors
+        if: failure()
+        run: |
+          echo "### Typecheck output" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          tail -100 "${RUNNER_TEMP}/typecheck.log" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
       - run: npm test
       - run: npm run build
         env:

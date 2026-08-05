@@ -27,3 +27,19 @@ export const saveWorkflowSchema = z.object({
 });
 
 export type WorkflowGraph = z.infer<typeof workflowGraphSchema>;
+export type WorkflowNodeType = z.infer<typeof workflowNodeSchema>["type"];
+
+const WORKFLOW_NODE_TYPES: WorkflowNodeType[] = [
+  "httpRequest",
+  "transform",
+  "condition",
+  "selfHeal",
+  "webhookOut",
+];
+
+export function parseWorkflowNodeType(value: string | undefined): WorkflowNodeType {
+  if (value && WORKFLOW_NODE_TYPES.includes(value as WorkflowNodeType)) {
+    return value as WorkflowNodeType;
+  }
+  return "httpRequest";
+}

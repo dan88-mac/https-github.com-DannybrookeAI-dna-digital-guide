@@ -19,6 +19,7 @@ import { triggerHaptic } from "@/lib/mobile/nativePlugins";
 import { ConsoleOutput } from "@/components/builder/ConsoleOutput";
 import { CodeExportModal } from "@/components/builder/CodeExportModal";
 import { builderNodeTypes } from "@/components/builder/nodeTypes";
+import { parseWorkflowNodeType } from "@/schemas/workflow";
 
 const initialNodes: Node[] = [
   {
@@ -137,7 +138,7 @@ export function NodeBoard({ templateSlug }: { templateSlug?: string }) {
         graph={{
           nodes: nodes.map((n) => ({
             id: n.id,
-            type: (n.data as { nodeType?: string }).nodeType ?? "httpRequest",
+            type: parseWorkflowNodeType((n.data as { nodeType?: string }).nodeType),
             position: n.position,
             data: n.data as Record<string, unknown>,
           })),

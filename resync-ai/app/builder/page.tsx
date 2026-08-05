@@ -1,19 +1,19 @@
 import { NodeBoard } from "@/components/builder/NodeBoard";
+import { BuilderPageHeader } from "@/components/builder/BuilderPageHeader";
 
 export default function BuilderPage({
   searchParams,
 }: {
-  searchParams: { template?: string };
+  searchParams: { template?: string; design?: string; studio?: string; addModule?: string };
 }) {
   return (
-    <div className="mx-auto max-w-[1400px] px-4 py-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Workflow builder</h1>
-        <p className="text-sm text-zinc-400">
-          Design flows that self-heal in production—then export code your team can reuse forever.
-        </p>
-      </div>
-      <NodeBoard templateSlug={searchParams.template} />
+    <div className="mx-auto max-w-[1600px] px-4 py-6">
+      <BuilderPageHeader />
+      <NodeBoard
+        templateSlug={searchParams.template}
+        designId={searchParams.design}
+        addModule={searchParams.addModule}
+      />
     </div>
   );
 }

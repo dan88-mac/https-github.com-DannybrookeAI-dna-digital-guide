@@ -73,22 +73,22 @@ const FALLBACK_DATA = {
       features: ["Visual builder", "500 credits/mo", "Templates", "Offline drafts"],
     },
     {
-      name: "Starter",
-      priceLabel: "$29",
+      name: "Builder",
+      priceLabel: "$39",
       highlighted: false,
-      features: ["5,000 credits/mo", "Email support", "Code export"],
+      features: ["Full palette", "Idea-to-canvas", "Export", "8k credits"],
     },
     {
       name: "Pro",
-      priceLabel: "$99",
+      priceLabel: "$129",
       highlighted: true,
-      features: ["25,000 credits/mo", "Team roles", "Priority heal", "Webhooks"],
+      features: ["50 modules", "Marketplace sell", "Priority heal", "40k credits"],
     },
     {
       name: "Enterprise",
       priceLabel: "Custom",
       highlighted: false,
-      features: ["SSO", "Dedicated success", "SLA", "Co-marketing"],
+      features: ["SSO", "SLA", "12% marketplace fee", "Volume credits"],
     },
   ],
   dashboardMetrics: [
@@ -260,7 +260,7 @@ function viewCommunity() {
   return `
     <section class="view active">
       <h1>A community that builds together</h1>
-      <p style="color:var(--muted)">Daniel & Brooke — 50/50 — NSW Australia. Publish templates and help teams ship reliable automation.</p>
+      <p style="color:var(--muted)">Publish templates, share playbooks, and help teams ship reliable automation with Resync AI.</p>
       <div class="grid-2" style="margin-top:24px">
         ${DATA.missionPillars.map((p) => `<article class="card glass"><h3>${p.title}</h3><p>${p.body}</p></article>`).join("")}
       </div>
@@ -333,9 +333,8 @@ function viewContracts() {
 
   return `
     <section class="view active">
-      <h1>Contracts &amp; legal packs</h1>
-      <p style="color:var(--muted)">Daniel &amp; Brooke · ${DATA.partners?.split || "50/50"} · ${DATA.partners?.region || "NSW"}</p>
-      <p style="font-size:14px;color:#fbbf24;margin-top:12px">Draft documents — have a NSW solicitor review before signing.</p>
+      <h1>Documentation</h1>
+      <p style="color:var(--muted)">Deployment guides and technical resources for Resync AI.</p>
       <div style="margin-top:24px">${items || "<p>No contract links configured.</p>"}</div>
       <div class="card glass" style="margin-top:24px">
         <h3>Save everything to iPhone Files</h3>

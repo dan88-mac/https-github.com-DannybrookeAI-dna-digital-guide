@@ -22,7 +22,7 @@ export function WebGLCanvas() {
       setUseFallback(true);
       return;
     }
-    const gl = glCtx;
+    const gl: WebGLRenderingContext = glCtx;
 
     const dpr = Math.min(window.devicePixelRatio, 2);
     let raf = 0;
@@ -51,16 +51,16 @@ export function WebGLCanvas() {
       }
     `;
 
-    function compile(type: number, source: string) {
-      const shader = gl.createShader(type)!;
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
+    function compile(ctx: WebGLRenderingContext, type: number, source: string) {
+      const shader = ctx.createShader(type)!;
+      ctx.shaderSource(shader, source);
+      ctx.compileShader(shader);
       return shader;
     }
 
     const program = gl.createProgram()!;
-    gl.attachShader(program, compile(gl.VERTEX_SHADER, vsSource));
-    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fsSource));
+    gl.attachShader(program, compile(gl, gl.VERTEX_SHADER, vsSource));
+    gl.attachShader(program, compile(gl, gl.FRAGMENT_SHADER, fsSource));
     gl.linkProgram(program);
     gl.useProgram(program);
 

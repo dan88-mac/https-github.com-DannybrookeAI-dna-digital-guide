@@ -1,76 +1,118 @@
 import Link from "next/link";
-import { MissionSection } from "@/components/marketing/MissionSection";
+import { HeroImmersive } from "@/components/marketing/HeroImmersive";
 import { SocialProofBar } from "@/components/marketing/SocialProofBar";
+import { FeatureVideoShowcase } from "@/components/marketing/FeatureVideoShowcase";
+import { ScaleShowcase } from "@/components/marketing/ScaleShowcase";
+import { MonsterCanvasTeaser } from "@/components/marketing/MonsterCanvasTeaser";
+import { ReviewsSection } from "@/components/marketing/ReviewsSection";
+import { VisionLegalStrip } from "@/components/marketing/VisionLegalStrip";
 import { CommunityWaitlistForm } from "@/components/marketing/CommunityWaitlistForm";
-import { TemplateCard } from "@/components/marketing/TemplateCard";
-import { COMMUNITY_TEMPLATES } from "@/lib/community/content";
+import { AnimatedSection } from "@/components/marketing/ShowcaseAnimations";
+
+const steps = [
+  {
+    num: "01",
+    title: "Sketch on the canvas",
+    body: "Drop nodes for triggers, transforms, and outputs. Wire multimodal paths with drag-and-connect—no YAML archaeology.",
+  },
+  {
+    num: "02",
+    title: "Test with live data",
+    body: "Run flows against real payloads in the studio. Watch packets route, failures surface, and self-heal kick in before deploy.",
+  },
+  {
+    num: "03",
+    title: "Export and ship",
+    body: "Generate production Next.js routes, publish templates to the community, and monitor from the same graph you built.",
+  },
+];
 
 export default function HomePage() {
   return (
     <>
-      <section className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:pt-28">
-        <div className="max-w-3xl animate-fade-in">
-          <p className="text-sm font-medium uppercase tracking-widest text-indigo-400">
-            Self-healing workflow SaaS
-          </p>
-          <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
-            Automations that <span className="text-gradient">recover</span>—so your community
-            keeps trusting you
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-zinc-400">
-            Resync AI repairs broken integrations in production, exports real Next.js code, and
-            grows with a template library your team will revisit launch after launch.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/builder"
-              className="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-900/50 hover:bg-indigo-500"
-            >
-              Start building free
-            </Link>
-            <Link
-              href="/templates"
-              className="rounded-xl border border-resync-border px-6 py-3 text-sm font-semibold text-white hover:bg-white/5"
-            >
-              Browse templates
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HeroImmersive />
 
       <SocialProofBar />
 
-      <section className="mx-auto max-w-6xl px-4 py-20">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="text-2xl font-bold text-white">Start from community-proven flows</h2>
-            <p className="mt-2 text-zinc-400">Clone, customize, and publish back to help the next team.</p>
-          </div>
-          <Link href="/templates" className="text-sm text-indigo-400 hover:text-indigo-300">
-            View all templates →
-          </Link>
+      <FeatureVideoShowcase />
+
+      <ScaleShowcase />
+
+      <MonsterCanvasTeaser />
+
+      <AnimatedSection animation="fadeRise" className="mx-auto max-w-6xl px-4 py-24">
+        <div className="text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-400/70">
+            How it works
+          </p>
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Three steps from idea to production
+          </h2>
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {COMMUNITY_TEMPLATES.map((t) => (
-            <TemplateCard key={t.id} template={t} />
+
+        <div className="mt-14 grid gap-8 md:grid-cols-3">
+          {steps.map((s, i) => (
+            <article
+              key={s.num}
+              className="animate-fade-rise relative rounded-2xl border border-resync-border/60 bg-resync-surface/40 p-8"
+              style={{ animationDelay: `${i * 120}ms` }}
+            >
+              <span className="font-mono text-4xl font-bold text-cyan-500/20">{s.num}</span>
+              <h3 className="mt-4 text-lg font-semibold text-white">{s.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400">{s.body}</p>
+            </article>
           ))}
         </div>
-      </section>
+      </AnimatedSection>
 
-      <MissionSection />
+      <ReviewsSection />
 
-      <section className="mx-auto max-w-6xl px-4 pb-24">
-        <div className="glass rounded-3xl p-8 md:p-12">
-          <h2 className="text-2xl font-bold text-white">Join the Resync community</h2>
-          <p className="mt-3 max-w-xl text-zinc-400">
-            Early builders get template spotlights, revenue-share on published flows, and direct
-            input on our roadmap.
+      <VisionLegalStrip />
+
+      <AnimatedSection animation="glowPulse" className="mx-auto max-w-6xl px-4 py-24 pb-32">
+        <div className="relative overflow-hidden rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-resync-surface/80 via-resync-surface/60 to-indigo-950/30 p-10 md:p-14">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/5 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-indigo-500/5 blur-3xl" />
+
+          <h2 className="font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Ready to build something that lasts?
+          </h2>
+          <p className="mt-4 max-w-xl text-zinc-400">
+            Open the studio, wire your first canvas, or join builders sharing templates in the
+            community.
           </p>
-          <div className="mt-8">
-            <CommunityWaitlistForm source="landing" />
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              href="/studio"
+              className="rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-900/20 transition hover:brightness-110"
+            >
+              Open studio
+            </Link>
+            <Link
+              href="/builder"
+              className="rounded-xl border border-resync-border px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+            >
+              Launch builder
+            </Link>
+            <Link
+              href="/community"
+              className="rounded-xl border border-resync-border px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+            >
+              Join community
+            </Link>
+          </div>
+
+          <div className="mt-10 border-t border-resync-border/40 pt-8">
+            <p className="text-sm text-zinc-500">
+              Want early access to template spotlights and roadmap input?
+            </p>
+            <div className="mt-4 max-w-lg">
+              <CommunityWaitlistForm source="landing-cta" />
+            </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

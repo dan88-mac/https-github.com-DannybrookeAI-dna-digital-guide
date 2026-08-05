@@ -5,8 +5,7 @@ Use this when you only have your **iPhone** — no local laptop required.
 ## 1. One-time: connect GitHub → Vercel
 
 1. On iPhone, open **[vercel.com](https://vercel.com)** → Sign up with **GitHub**.
-2. **Add New Project** → import repo:  
-   `dan88-mac/https-github.com-DannybrookeAI-dna-digital-guide`
+2. **Add New Project** → import your GitHub repo that contains the `resync-ai` folder.
 3. Set **Root Directory** to: `resync-ai` (required).
 4. Framework: **Next.js** (auto-detected).
 5. Add **Environment Variables** (minimum to build & run):

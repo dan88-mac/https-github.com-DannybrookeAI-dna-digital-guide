@@ -2,10 +2,25 @@
 
 Your app lives in **`resync-ai/`**. Production **`main`** must include that folder (not README-only).
 
+## If your build log looks like this
+
+```text
+Cloning ... (Branch: cursor/fix-vercel-deploy-b046, Commit: 73b0dc7)
+Running "install" command: `npm install --prefix resync-ai`...
+npm warn deprecated ...
+```
+
+- **`npm warn deprecated`** during install is normal — not a failure.
+- **`npm install --prefix resync-ai`** means **Root Directory is still empty** (repo root). That can work, but for Next.js the reliable fix is **Root Directory = `resync-ai`** (see below).
+- An old commit like **`73b0dc7`** misses TypeScript and test fixes. Use **`main`** or **`cursor/fix-vercel-deploy-b046`** at **`4768df3`** or newer (both are synced now).
+
+**Vercel → Settings → Git → Production Branch:** set to **`main`** (recommended), then **Redeploy**.
+
 ## Option A — Existing Vercel project (fastest)
 
 1. [Vercel Dashboard](https://vercel.com/dashboard) → your project → **Settings** → **General**.
-2. **Root Directory** → **Edit** → enter `resync-ai` → **Save**.
+2. **Root Directory** → **Edit** → enter `resync-ai` → **Save**.  
+   After this, install logs should show plain `npm install` (no `--prefix`), and Next.js is detected correctly.
 3. **Settings** → **Environment Variables** — add (Production, Preview, Development):
 
 | Variable | Value (first deploy) |

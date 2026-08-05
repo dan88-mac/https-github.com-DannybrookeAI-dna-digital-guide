@@ -336,7 +336,14 @@ function injectSelfHealOnFailurePaths(
   return { nodes: newNodes, edges: newEdges };
 }
 
-export function translateIdeaToGraph(idea: string): IdeaGraphResult {
+export interface TranslateIdeaOptions {
+  scale?: GraphScale;
+}
+
+export function translateIdeaToGraph(
+  idea: string,
+  options?: TranslateIdeaOptions,
+): IdeaGraphResult {
   const trimmed = idea.trim();
   if (!trimmed) {
     const mod = getModule("trigger");
@@ -356,7 +363,7 @@ export function translateIdeaToGraph(idea: string): IdeaGraphResult {
   }
 
   const domains = detectDomains(trimmed);
-  const scale = estimateScale(trimmed, domains);
+  const scale = options?.scale ?? estimateScale(trimmed, domains);
   const blueprint = buildBlueprint(domains);
   const nodeCount = targetNodeCount(scale, trimmed);
   const moduleIds = expandModules(blueprint, nodeCount);

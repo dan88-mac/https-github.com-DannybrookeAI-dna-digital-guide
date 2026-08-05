@@ -6,11 +6,13 @@ export default function BuilderPage({
   searchParams: { template?: string };
 }) {
   return (
-    <div className="mx-auto max-w-[1400px] px-4 py-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Workflow builder</h1>
-        <p className="text-sm text-zinc-400">
-          Design flows that self-heal in production—then export code your team can reuse forever.
+    <div className="mx-auto max-w-[1600px] px-4 py-6">
+      <div className="mb-4">
+        <h1 className="text-2xl font-bold text-white">Multimodal workflow studio</h1>
+        <p className="mt-1 max-w-2xl text-sm text-zinc-400">
+          Describe an idea in plain language—vision, voice, text, commerce, or DevOps—and
+          Resync generates a production-ready graph from 50 catalog modules. Refine density,
+          inspect nodes, score resilience, and simulate execution before export.
         </p>
       </div>
       <NodeBoard templateSlug={searchParams.template} />

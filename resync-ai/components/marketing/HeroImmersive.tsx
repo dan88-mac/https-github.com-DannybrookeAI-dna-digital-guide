@@ -9,6 +9,8 @@ import {
   type NetworkEdge,
   type NetworkNode,
 } from "@/components/marketing/canvas/nodeNetwork";
+import { FoldingChipBackdrop, VisionQuoteBand } from "@/components/marketing/FoldingChipBackdrop";
+import { ContextInfo } from "@/components/ui/ContextInfo";
 
 export function HeroImmersive() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -88,10 +90,15 @@ export function HeroImmersive() {
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-resync-bg/20 via-transparent to-resync-bg" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(34,211,238,0.08),transparent_60%)]" />
+      <FoldingChipBackdrop />
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-4 pb-24 pt-28">
         <p className="animate-fade-rise font-mono text-xs uppercase tracking-[0.35em] text-cyan-400/80">
           Resync AI
+          <ContextInfo title="What is Resync?">
+            Self-healing multimodal workflows — Community $0, Builder $39, Pro $129. Agents propose;
+            humans approve.
+          </ContextInfo>
         </p>
 
         <h1 className="animate-fade-rise mt-6 max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight text-white [animation-delay:120ms] md:text-7xl lg:text-8xl">
@@ -100,6 +107,8 @@ export function HeroImmersive() {
             heal in production
           </span>
         </h1>
+
+        <VisionQuoteBand />
 
         <p className="animate-fade-rise mt-6 max-w-xl text-lg leading-relaxed text-zinc-400 [animation-delay:240ms] md:text-xl">
           Build multimodal automation on a living canvas—self-repairing nodes, exportable code,

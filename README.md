@@ -2,15 +2,18 @@
 
 | Area | Location |
 |------|----------|
-| **Desktop setup pack (Windows)** | [`Resync-AI-Desktop/`](Resync-AI-Desktop/) — `START-HERE.md`, `run.bat`, contracts, investor slideshow |
+| **SaaS application (canonical)** | [`resync-ai/`](resync-ai/) — Vercel Root Directory = `resync-ai` |
+| **Desktop pack** | [`Resync-AI-Desktop/`](Resync-AI-Desktop/) — `run.bat`, partner chip vault, static preview |
 | **Desktop zip** | [`Resync-AI-Desktop.zip`](Resync-AI-Desktop.zip) |
-| **View on iPhone (Safari + Files)** | [IPHONE-VIEW-AND-SAVE.md](IPHONE-VIEW-AND-SAVE.md) |
+| **Consolidation** | [`docs/consolidation/BEST-OF-INDEX.md`](docs/consolidation/BEST-OF-INDEX.md) |
+| **Competitive intel** | [`docs/competitive-intelligence/`](docs/competitive-intelligence/) |
 | **Koder / iPhone zip** | [`koder-pack/`](koder-pack/) · [`resync-ai-iphone.zip`](resync-ai-iphone.zip) |
-| **SaaS application** | [`resync-ai/`](resync-ai/) — deploy via Vercel |
-| **Technical blueprint** | [docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md](docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md) |
-| **Business & legal (50/50)** | [docs/business-legal/01-MASTER-INDEX.md](docs/business-legal/01-MASTER-INDEX.md) |
-| **Contract last-look checklist** | [docs/business-legal/CONTRACT-REVIEW-CHECKLIST.md](docs/business-legal/CONTRACT-REVIEW-CHECKLIST.md) |
-| **PDF packs (Daniel & Brooke)** | [pdf-deliverables/](pdf-deliverables/) — run `./scripts/generate-partner-pdf-pack.sh` |
+| **Business & legal** | [`docs/business-legal/01-MASTER-INDEX.md`](docs/business-legal/01-MASTER-INDEX.md) |
+| **Contract last-look** | [`docs/business-legal/CONTRACT-REVIEW-CHECKLIST.md`](docs/business-legal/CONTRACT-REVIEW-CHECKLIST.md) |
+| **PDF packs** | [`pdf-deliverables/`](pdf-deliverables/) |
+| **Ops worker** | [`workers/resync_ops/`](workers/resync_ops/) |
 
-**Co-founders:** Daniel Noel Mcgarry & Brooke Caroline Hunt — **50% / 50%** (NSW, Australia).  
-**Deploy on Vercel:** [VERCEL-DEPLOY.md](VERCEL-DEPLOY.md) · **Deploy from iPhone:** [resync-ai/DEPLOY-FROM-GITHUB.md](resync-ai/DEPLOY-FROM-GITHUB.md) · **ABN / Pty Ltd:** [docs/business-legal/12-AUSTRALIA-NSW-REGISTRATION-AND-NEXT-STEPS.md](docs/business-legal/12-AUSTRALIA-NSW-REGISTRATION-AND-NEXT-STEPS.md)
+**Public brand:** Resync AI only. Partner materials stay in Desktop `partners/` + PDFs.  
+**Prices:** Community $0 · Builder $39 · Pro $129 · Enterprise custom · Marketplace 20% (Enterprise 12%).  
+**Admin:** Footer → `/admin/login` · bootstrap via `resync-ai/scripts/bootstrap-admin.mjs` (env secrets only).  
+**Deploy:** [VERCEL-DEPLOY.md](VERCEL-DEPLOY.md)

@@ -12,6 +12,7 @@ import {
 } from "@/lib/engine/moduleCatalog";
 import { getAllLibraries, getRatioHints, getRecommendedPairs } from "@/lib/engine/modulePairing";
 import { AgentHelpIcon } from "@/components/agent/AgentHelpIcon";
+import { CodeSidePanel } from "@/components/builder/CodeSidePanel";
 
 const ALL_CATEGORIES = Object.keys(CATEGORY_LABELS) as ModuleCategory[];
 
@@ -275,6 +276,16 @@ export function MultimodalCatalogClient() {
           ))}
         </div>
       )}
+
+      <section className="mt-12 grid gap-4 lg:grid-cols-2">
+        <div>
+          <h2 className="text-sm font-semibold text-white">Live code side panel</h2>
+          <p className="mt-1 text-xs text-zinc-500">
+            Sketch updates as you filter — copy or download for your canvas.
+          </p>
+        </div>
+        <CodeSidePanel modules={modules.slice(0, 12)} />
+      </section>
 
       <section className="mt-12 rounded-xl border border-resync-border/60 bg-resync-bg/30 p-6 text-center">
         <h2 className="text-lg font-semibold text-white">Ready to compose?</h2>

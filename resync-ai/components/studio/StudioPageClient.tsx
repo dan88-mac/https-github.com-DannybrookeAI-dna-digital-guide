@@ -113,6 +113,38 @@ export function StudioPageClient() {
         </p>
       </section>
 
+      <section className="mt-8 grid gap-4 md:grid-cols-2">
+        <div className="rounded-2xl border border-cyan-500/30 bg-cyan-950/20 p-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-cyan-400/80">
+            Agentic workflows
+          </p>
+          <h2 className="mt-2 font-display text-xl font-semibold text-white">
+            Evolving agent graphs
+          </h2>
+          <p className="mt-2 text-sm text-zinc-400">
+            Build 2–3 node sparks up to 50-module monster pipelines with autonomous next-objective
+            links. Toggle on/off, idle timers, and click triggers in Builder after generate.
+          </p>
+          <ul className="mt-3 space-y-1 text-xs text-zinc-500">
+            <li>· ReAct / tool-call / RAG agent modules from the catalog</li>
+            <li>· Forge agent suggests templates (admin-approved)</li>
+            <li>· Overview score gates “production ready”</li>
+          </ul>
+        </div>
+        <div className="rounded-2xl border border-indigo-500/30 bg-indigo-950/20 p-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-indigo-400/80">
+            SaaS website flows
+          </p>
+          <h2 className="mt-2 font-display text-xl font-semibold text-white">
+            Product & growth graphs
+          </h2>
+          <p className="mt-2 text-sm text-zinc-400">
+            Checkout heal, onboarding, notify, and marketplace patterns for the Resync SaaS itself —
+            same studio, different intent.
+          </p>
+        </div>
+      </section>
+
       <div className="mt-10 grid gap-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           {/* Idea input */}

@@ -3,9 +3,6 @@ import { HeroImmersive } from "@/components/marketing/HeroImmersive";
 import { SocialProofBar } from "@/components/marketing/SocialProofBar";
 import { FeatureVideoShowcase } from "@/components/marketing/FeatureVideoShowcase";
 import { ScaleShowcase } from "@/components/marketing/ScaleShowcase";
-import { MonsterCanvasTeaser } from "@/components/marketing/MonsterCanvasTeaser";
-import { ReviewsSection } from "@/components/marketing/ReviewsSection";
-import { VisionLegalStrip } from "@/components/marketing/VisionLegalStrip";
 import { CommunityWaitlistForm } from "@/components/marketing/CommunityWaitlistForm";
 import { AnimatedSection } from "@/components/marketing/ShowcaseAnimations";
 
@@ -38,8 +35,6 @@ export default function HomePage() {
 
       <ScaleShowcase />
 
-      <MonsterCanvasTeaser />
-
       <AnimatedSection animation="fadeRise" className="mx-auto max-w-6xl px-4 py-24">
         <div className="text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-400/70">
@@ -65,10 +60,6 @@ export default function HomePage() {
         </div>
       </AnimatedSection>
 
-      <ReviewsSection />
-
-      <VisionLegalStrip />
-
       <AnimatedSection animation="glowPulse" className="mx-auto max-w-6xl px-4 py-24 pb-32">
         <div className="relative overflow-hidden rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-resync-surface/80 via-resync-surface/60 to-indigo-950/30 p-10 md:p-14">
           <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/5 blur-3xl" />
@@ -79,7 +70,7 @@ export default function HomePage() {
           </h2>
           <p className="mt-4 max-w-xl text-zinc-400">
             Open the studio, wire your first canvas, or join builders sharing templates in the
-            community.
+            community. Plans: Community $0 · Builder $39 · Pro $129.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">

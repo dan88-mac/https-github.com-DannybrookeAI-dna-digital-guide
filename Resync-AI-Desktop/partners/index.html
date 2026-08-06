@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resync AI — Partner vault</title>
+  <style>
+    :root { --bg:#05080f; --cyan:#22d3ee; --indigo:#6366f1; --text:#f4f7fb; --muted:#94a3b8; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; font-family: ui-sans-serif, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(34,211,238,.15), transparent 55%),
+        var(--bg);
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 48px 20px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.03em; }
+    .chips { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 36px; perspective: 1200px; }
+    .chip {
+      position: relative; border-radius: 24px; padding: 28px 22px; text-decoration: none; color: inherit;
+      border: 1px solid rgba(34,211,238,.35);
+      background: linear-gradient(145deg, rgba(14,21,36,.95), rgba(30,27,75,.55));
+      box-shadow: 0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+      transform: rotateX(12deg) rotateY(-6deg);
+      transition: transform .35s ease, box-shadow .35s ease;
+      overflow: hidden;
+    }
+    .chip:hover { transform: rotateX(0) rotateY(0) translateY(-4px); box-shadow: 0 28px 80px rgba(34,211,238,.18); }
+    .chip::before {
+      content: ""; position: absolute; inset: -40% 40% auto -20%; height: 80%;
+      background: linear-gradient(120deg, transparent, rgba(34,211,238,.25), transparent);
+      animation: sweep 4s linear infinite;
+    }
+    @keyframes sweep { to { transform: translateX(180%); } }
+    .mark {
+      width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+      font-weight: 800; background: linear-gradient(135deg, var(--cyan), var(--indigo));
+      box-shadow: 0 0 24px rgba(34,211,238,.35);
+    }
+    p { color: var(--muted); line-height: 1.5; font-size: 14px; }
+    .note { margin-top: 40px; font-size: 12px; color: #64748b; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p style="letter-spacing:.2em;text-transform:uppercase;font-size:11px;color:#67e8f9">Private · not public SaaS</p>
+    <h1>Partner chip vault</h1>
+    <p>3D chip-styled folders for operator packages. Public Resync AI stays brand-only.</p>
+    <div class="chips">
+      <a class="chip" href="./daniel/">
+        <div class="mark">D</div>
+        <h2 style="margin:16px 0 8px;font-size:1.25rem">Daniel vault</h2>
+        <p>Complete PDF package, executive docs, registry sheets.</p>
+      </a>
+      <a class="chip" href="./brooke/">
+        <div class="mark">B</div>
+        <h2 style="margin:16px 0 8px;font-size:1.25rem">Brooke vault</h2>
+        <p>Complete PDF package, executive docs, registry sheets.</p>
+      </a>
+      <a class="chip" href="./CONTRACT-REVIEW-CHECKLIST.md">
+        <div class="mark">✓</div>
+        <h2 style="margin:16px 0 8px;font-size:1.25rem">Last-look checklist</h2>
+        <p>Counsel-bound review gates before signatures.</p>
+      </a>
+    </div>
+    <p class="note">Open folders in Finder/Explorer. Do not deploy this directory to Vercel public hosting.</p>
+  </div>
+</body>
+</html>

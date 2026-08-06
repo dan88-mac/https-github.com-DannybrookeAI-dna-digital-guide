@@ -19,17 +19,32 @@ export default function PricingPage() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16">
+    <div className="relative mx-auto max-w-6xl px-4 py-16">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 -top-10 -z-10 h-72 animate-pulse bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.16),transparent_60%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 top-40 -z-10 h-64 w-64 animate-[spin_28s_linear_infinite] rounded-full bg-[conic-gradient(from_180deg,rgba(99,102,241,0.2),transparent,rgba(34,211,238,0.15))] opacity-60 blur-2xl"
+      />
       <div className="max-w-2xl">
-        <h1 className="text-4xl font-bold text-white">Pricing that scales with your impact</h1>
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-400/70">
+          Community $0 · Builder $39 · Pro $129
+        </p>
+        <h1 className="mt-3 font-display text-4xl font-bold text-white md:text-5xl">
+          Pricing theatre for heal-first teams
+        </h1>
         <p className="mt-4 text-zinc-400">
           Start free on Community. Upgrade when you need full palette access, marketplace selling,
           or enterprise controls. Credits power self-heal runs and AI-assisted canvas generation.
         </p>
       </div>
 
-      <div className="mt-12">
-        <PricingTable onSelect={handleSelect} />
+      <div className="mt-12 [perspective:1200px]">
+        <div className="transition duration-500 hover:[transform:rotateX(2deg)_rotateY(-2deg)]">
+          <PricingTable onSelect={handleSelect} />
+        </div>
       </div>
 
       <section className="glass mt-16 rounded-2xl p-8">

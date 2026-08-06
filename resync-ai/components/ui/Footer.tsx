@@ -63,6 +63,11 @@ export function Footer() {
                 Vision
               </Link>
             </li>
+            <li>
+              <Link href="/agents" className="hover:text-white">
+                Agent fleet
+              </Link>
+            </li>
           </ul>
         </div>
         <div>
@@ -92,7 +97,16 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-resync-border py-6 text-center text-xs text-zinc-500">
-        © {new Date().getFullYear()} Resync AI. Multimodal workflows that heal themselves.
+        <p>© {new Date().getFullYear()} Resync AI. Multimodal workflows that heal themselves.</p>
+        <p className="mt-2">
+          <Link
+            href="/admin/login"
+            className="text-zinc-600 transition hover:text-zinc-400"
+            aria-label="Admin sign-in"
+          >
+            Admin
+          </Link>
+        </p>
       </div>
     </footer>
   );

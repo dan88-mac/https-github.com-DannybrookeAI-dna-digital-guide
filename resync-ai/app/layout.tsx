@@ -4,6 +4,7 @@ import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { WebGLCanvas } from "@/components/ui/WebGLCanvas";
 import { SiteAgentShell } from "@/components/agent/SiteAgentShell";
+import { UpsellPopupHost } from "@/components/marketing/UpsellPopupHost";
 import "./globals.css";
 
 const syne = Syne({
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main className="min-h-screen pt-16">{children}</main>
           <Footer />
+          <UpsellPopupHost />
         </SiteAgentShell>
         <script
           dangerouslySetInnerHTML={{

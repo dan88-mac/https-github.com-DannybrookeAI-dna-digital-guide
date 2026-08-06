@@ -47,6 +47,24 @@ Vercel → Project → **Domains** → add e.g. `resync.ai` or `.com.au` when re
 
 Push to branch `cursor/resync-ai-full-build-86ce` or `main` after merge; Vercel rebuilds from GitHub without a laptop.
 
+## Admin bootstrap (env only — never commit passwords)
+
+After Supabase is configured and migrations are applied (including `20260806000003_admin_agents_security.sql`):
+
+```bash
+cd resync-ai
+export ADMIN_EMAIL_1="you@example.com"
+export ADMIN_PASSWORD_1="use-a-password-manager"
+# optional second operator
+# export ADMIN_EMAIL_2="..."
+# export ADMIN_PASSWORD_2="..."
+node scripts/bootstrap-admin.mjs
+```
+
+Then open `/admin/login` (footer **Admin** link). Rotate any password that was ever pasted into chat.
+
+Cron routes (optional `CRON_SECRET` Bearer): `/api/cron/price-audit`, `/api/cron/login-health`, `/api/cron/community-draft`.
+
 ## Troubleshooting
 
 | Issue | Fix |
@@ -55,6 +73,7 @@ Push to branch `cursor/resync-ai-full-build-86ce` or `main` after merge; Vercel 
 | **“Index of /”** listing (`.rsc`, `_next`) | Root Directory wrong or Output Directory overridden — set Root = `resync-ai`, clear Output Directory, Framework = Next.js. Prefer dashboard Root Directory over legacy root `builds`. See [VERCEL-DEPLOY.md](../VERCEL-DEPLOY.md). |
 | Auth redirect errors | Set `NEXT_PUBLIC_APP_URL` to exact production URL |
 | Builder empty | Add Supabase env vars; run migrations |
+| Admin denied | Profile `app_role` must be `admin` via bootstrap script |
 | Need UI on iPhone without cloud | Download repo `resync-ai-iphone.zip` / `koder-pack/` — open in Koder |
 
 Full technical blueprint: [../docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md](../docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md)

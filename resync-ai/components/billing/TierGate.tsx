@@ -2,28 +2,49 @@
 
 import Link from "next/link";
 import type { SubscriptionTier } from "@/types/database";
-import { canAccessOverviewScore } from "@/lib/billing/access";
-
-export { canAccessOverviewScore };
+import {
+  canAccessFeature,
+  upgradeHint,
+  type GateFeature,
+} from "@/lib/billing/access";
 
 interface TierGateProps {
   tier: SubscriptionTier;
-  feature: string;
+  feature: GateFeature | string;
   children: React.ReactNode;
   teaser?: React.ReactNode;
 }
 
+function resolveFeature(feature: GateFeature | string): GateFeature {
+  if (
+    feature === "overview_score" ||
+    feature === "full_builder" ||
+    feature === "pro_canvas" ||
+    feature === "marketplace_sell" ||
+    feature === "subscription_workflows"
+  ) {
+    return feature;
+  }
+  // Back-compat: older calls passed display strings for overview scoring
+  return "overview_score";
+}
+
+export { canAccessOverviewScore } from "@/lib/billing/access";
+
 export function TierGate({ tier, feature, children, teaser }: TierGateProps) {
-  if (canAccessOverviewScore(tier)) {
+  const gate = resolveFeature(feature);
+  if (canAccessFeature(tier, gate)) {
     return <>{children}</>;
   }
+
+  const hint = upgradeHint(gate);
 
   return (
     <div className="relative">
       <div className="pointer-events-none select-none blur-sm">{teaser ?? children}</div>
       <div className="absolute inset-0 flex items-center justify-center bg-resync-bg/60 backdrop-blur-[2px]">
-        <div className="glass mx-4 max-w-md rounded-2xl border border-indigo-500/30 p-6 text-center">
-          <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-indigo-950/80 text-indigo-300">
+        <div className="glass mx-4 max-w-md rounded-2xl border border-cyan-500/25 p-6 text-center">
+          <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-cyan-950/80 text-cyan-300">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -33,16 +54,13 @@ export function TierGate({ tier, feature, children, teaser }: TierGateProps) {
               />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-white">{feature}</h3>
-          <p className="mt-2 text-sm text-zinc-400">
-            Full overview integrity scoring, blueprint narratives, and engineer recommendations
-            are available on Pro and Enterprise plans.
-          </p>
+          <h3 className="text-lg font-semibold text-white">{hint.title}</h3>
+          <p className="mt-2 text-sm text-zinc-400">{hint.body}</p>
           <Link
             href="/pricing"
-            className="mt-4 inline-flex rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-indigo-500"
+            className="mt-4 inline-flex rounded-lg bg-gradient-to-r from-cyan-600 to-indigo-600 px-5 py-2.5 text-sm font-medium text-white hover:brightness-110"
           >
-            Upgrade to Pro
+            {hint.cta}
           </Link>
         </div>
       </div>

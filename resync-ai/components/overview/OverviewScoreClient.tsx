@@ -222,7 +222,7 @@ export function OverviewScoreClient() {
       </div>
 
       {!hasAccess ? (
-        <TierGate tier={tier} feature="Overview integrity score" teaser={teaserContent}>
+        <TierGate tier={tier} feature="overview_score" teaser={teaserContent}>
           {teaserContent}
         </TierGate>
       ) : (

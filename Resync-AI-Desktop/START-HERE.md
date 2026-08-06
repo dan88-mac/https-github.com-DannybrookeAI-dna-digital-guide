@@ -1,51 +1,32 @@
 # Resync AI — Desktop Pack (START HERE)
 
-Clean, presentable setup for **Windows** (and macOS/Linux via `run.sh`).
+## Layout
 
-## Folder map
+| Path | Purpose |
+|------|---------|
+| `run.bat` / `run.sh` | Install + `npm run dev` for **`../resync-ai`** |
+| `open-preview.bat` | Static remodel UI |
+| `open-slideshow.bat` | Investor deck |
+| `open-contracts.bat` | PDF contracts |
+| `partners/` | **Daniel** + **Brooke** private chip vault (`partners/index.html`) |
+| `01-website/` | Pointer only — not a second app copy |
+| `02-static-preview/` | Offline SPA |
+| `03-contracts-pdf/` | Shared PDFs + review |
+| `04-investor-slideshow/` | Showcase deck |
+| `05-guides/` | Deploy guides |
 
-| Folder / file | What it is |
-|---------------|------------|
-| **`run.bat`** | Checks Node + npm (+ Python if present), `npm install`, opens preview + slideshow, starts **`npm run dev`** |
-| **`open-preview.bat`** | Instant **clean static site** (no install) — Koder-pack remodel UI |
-| **`open-slideshow.bat`** | Investor / staff / developer showcase deck |
-| **`open-contracts.bat`** | Full PDF contracts + review checklist |
-| **`01-website/`** | Full Next.js SaaS (`resync-ai`) — production-shaped app |
-| **`02-static-preview/`** | Offline SPA (same look: home, builder, multimodal, marketplace, agent) |
-| **`03-contracts-pdf/`** | Partner PDFs, markdown sources, **last-look contract review** |
-| **`04-investor-slideshow/`** | Vision, stack, scoring, comps, 5-year plan, automated SaaS model |
-| **`05-guides/`** | Vercel, iPhone, deployment blueprint, next steps |
-| **`resync-ai-iphone.zip`** | Phone/Koder zip of the static preview |
+## Admin (never in this pack)
 
-## Quick start (Windows)
+Bootstrap admins with env-only secrets:
 
-1. Copy this whole **`Resync-AI-Desktop`** folder to your Desktop.
-2. Double-click **`open-preview.bat`** to see the clean website immediately.
-3. Double-click **`run.bat`** for the full Node stack (installs deps → http://localhost:3000).
-4. Double-click **`open-slideshow.bat`** before investor / staff meetings.
-5. Double-click **`open-contracts.bat`** to review PDFs + the checklist.
+```bash
+cd ../resync-ai
+# set ADMIN_EMAIL_1 / ADMIN_PASSWORD_1 (and optional _2) in env — not in git
+node scripts/bootstrap-admin.mjs
+```
 
-### Requirements for `run.bat`
+Footer **Admin** → `/admin/login`. Unauthorized attempts are reported.
 
-- [Node.js LTS](https://nodejs.org) (includes npm)
-- Optional: [Python 3](https://www.python.org) (detected; not required to run the site)
+## Prices
 
-## Clean website builds
-
-| Path | Audience |
-|------|----------|
-| `02-static-preview/index.html` | Fastest “what it looks like” — brand-first remodel |
-| `01-website` + `npm run dev` | Full stack: App Router, builder, APIs, agent shell |
-| Cloud | Vercel **Root Directory = `resync-ai`** (see `05-guides/VERCEL-DEPLOY.md`) |
-
-## Contracts
-
-- PDFs: `03-contracts-pdf/daniel-noel-mcgarry/` and `.../brooke-caroline-hunt/`
-- Sources: `03-contracts-pdf/sources/`
-- **Careful last look:** `03-contracts-pdf/review/CONTRACT-REVIEW-CHECKLIST.md`
-
-These are **drafts for counsel review** — not signed instruments until a solicitor finalizes them.
-
-## Investor deck
-
-Open `04-investor-slideshow/index.html` (arrow keys / buttons). Covers purpose, vision, stack-from-the-ground-up, deployment readiness scores, live-category comps, illustrative economics, and a **5-year feature/revenue roadmap**.
+Community **$0** · Builder **$39** · Pro **$129** · Enterprise custom · Marketplace **20%** (Enterprise **12%**).

@@ -1,6 +1,0 @@
-# Resync AI — Cursor Rules
-Next.js App Router, TypeScript strict, Tailwind, Supabase RLS, Stripe, OpenAI.
-- Zod in schemas/ for API bodies
-- Server secrets only in route handlers and lib/
-- organization_id on tenant resources
-- No TODOs in production paths

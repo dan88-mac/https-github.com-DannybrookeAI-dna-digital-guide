@@ -1,0 +1,12 @@
+{
+  "name": "resync-ai-desktop",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix 01-website",
+    "build": "npm run build --prefix 01-website",
+    "start": "npm run start --prefix 01-website",
+    "lint": "npm run lint --prefix 01-website",
+    "typecheck": "npm run typecheck --prefix 01-website",
+    "test": "npm run test --prefix 01-website"
+  }
+}

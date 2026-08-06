@@ -1,0 +1,563 @@
+{
+  "brand": {
+    "name": "Resync AI",
+    "tagline": "Self-healing multimodal workflows"
+  },
+  "stats": [
+    {
+      "label": "Self-healed runs",
+      "value": "2.4M+"
+    },
+    {
+      "label": "Module catalog",
+      "value": "260+"
+    },
+    {
+      "label": "Teams worldwide",
+      "value": "12k+"
+    },
+    {
+      "label": "Marketplace fee",
+      "value": "20%"
+    }
+  ],
+  "steps": [
+    {
+      "num": "01",
+      "title": "Sketch on the canvas",
+      "body": "Drop nodes for triggers, transforms, and outputs. Wire multimodal paths with drag-and-connect."
+    },
+    {
+      "num": "02",
+      "title": "Test with live data",
+      "body": "Run flows against real payloads. Watch failures surface and self-heal kick in before deploy."
+    },
+    {
+      "num": "03",
+      "title": "Export and ship",
+      "body": "Generate production routes, publish templates, and monitor from the same graph you built."
+    }
+  ],
+  "reviews": [
+    {
+      "quote": "We replaced three brittle Zapier chains with one self-healing canvas.",
+      "who": "Ops lead, SaaS"
+    },
+    {
+      "quote": "Idea-to-canvas got our multimodal intake live in an afternoon.",
+      "who": "Product eng"
+    },
+    {
+      "quote": "Marketplace templates saved weeks of wiring vision + notify paths.",
+      "who": "Indie builder"
+    }
+  ],
+  "templates": [
+    {
+      "id": "tpl-ecommerce-recovery",
+      "name": "E-commerce checkout recovery",
+      "slug": "checkout-recovery",
+      "category": "Commerce",
+      "description": "Heal missing shipping fields and retry payment webhooks automatically.",
+      "uses": 12400,
+      "nodes": [
+        "Checkout",
+        "Schema patch",
+        "Notify"
+      ]
+    },
+    {
+      "id": "tpl-saas-onboarding",
+      "name": "SaaS user onboarding",
+      "slug": "saas-onboarding",
+      "category": "Growth",
+      "description": "Validate signup payloads, fallback CRM sync, and welcome email.",
+      "uses": 8900,
+      "nodes": [
+        "Auth signup",
+        "Email valid?",
+        "Patch profile"
+      ]
+    },
+    {
+      "id": "tpl-devops-incident",
+      "name": "Incident auto-remediation",
+      "slug": "incident-remediation",
+      "category": "DevOps",
+      "description": "Detect alert webhooks, run health checks, post to Slack.",
+      "uses": 15200,
+      "nodes": [
+        "Pager alert",
+        "Health probe",
+        "Restart"
+      ]
+    },
+    {
+      "id": "tpl-vision-moderation",
+      "name": "Vision moderation pipeline",
+      "slug": "vision-moderation",
+      "category": "Vision",
+      "description": "Classify uploads, route unsafe content, notify moderators.",
+      "uses": 6100,
+      "nodes": [
+        "Vision classify",
+        "Condition",
+        "Human review"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "agent_react",
+      "label": "ReAct Agent",
+      "category": "agent",
+      "description": "Reasoning + acting agent loop"
+    },
+    {
+      "id": "agent_tool_call",
+      "label": "Tool Call",
+      "category": "agent",
+      "description": "Invoke registered tools from LLM"
+    },
+    {
+      "id": "analytics_track",
+      "label": "Track Event",
+      "category": "analytics",
+      "description": "Track product analytics event"
+    },
+    {
+      "id": "analytics_funnel",
+      "label": "Funnel Analysis",
+      "category": "analytics",
+      "description": "Analyze conversion funnel"
+    },
+    {
+      "id": "commerce_checkout",
+      "label": "Checkout",
+      "category": "commerce",
+      "description": "Process checkout and payment flow"
+    },
+    {
+      "id": "commerce_inventory",
+      "label": "Inventory Check",
+      "category": "commerce",
+      "description": "Verify stock levels before fulfillment"
+    },
+    {
+      "id": "condition",
+      "label": "Condition",
+      "category": "condition",
+      "description": "Branch based on a boolean expression"
+    },
+    {
+      "id": "condition_switch",
+      "label": "Switch",
+      "category": "condition",
+      "description": "Multi-way branch on field value"
+    },
+    {
+      "id": "data_query",
+      "label": "Data Query",
+      "category": "data",
+      "description": "Query database or data warehouse"
+    },
+    {
+      "id": "data_store",
+      "label": "Data Store",
+      "category": "data",
+      "description": "Persist records to storage"
+    },
+    {
+      "id": "delay",
+      "label": "Delay",
+      "category": "delay",
+      "description": "Wait for a fixed duration"
+    },
+    {
+      "id": "devops_deploy",
+      "label": "Deploy",
+      "category": "devops",
+      "description": "Trigger deployment pipeline"
+    },
+    {
+      "id": "devops_monitor",
+      "label": "Monitor",
+      "category": "devops",
+      "description": "Query metrics and health endpoints"
+    },
+    {
+      "id": "httpRequest",
+      "label": "HTTP Request",
+      "category": "http",
+      "description": "Call REST or GraphQL endpoints"
+    },
+    {
+      "id": "http_batch",
+      "label": "HTTP Batch",
+      "category": "http",
+      "description": "Execute multiple HTTP requests in parallel"
+    },
+    {
+      "id": "humanApprove",
+      "label": "Human Approval",
+      "category": "human",
+      "description": "Pause for human approval before continuing"
+    },
+    {
+      "id": "human_review",
+      "label": "Human Review",
+      "category": "human",
+      "description": "Request human review with rubric"
+    },
+    {
+      "id": "integrate",
+      "label": "Integration Hub",
+      "category": "integrate",
+      "description": "Connect to third-party SaaS integrations"
+    },
+    {
+      "id": "integrate_slack",
+      "label": "Slack",
+      "category": "integrate",
+      "description": "Send messages or actions to Slack"
+    },
+    {
+      "id": "lib_py_openai_chat",
+      "label": "OpenAI: Chat Completions",
+      "category": "library",
+      "description": "Generate chat completions via OpenAI API"
+    },
+    {
+      "id": "lib_py_openai_embed",
+      "label": "OpenAI: Embeddings",
+      "category": "library",
+      "description": "Create text embeddings for RAG pipelines"
+    },
+    {
+      "id": "media_image_gen",
+      "label": "Image Generate",
+      "category": "media",
+      "description": "Generate images from text prompts"
+    },
+    {
+      "id": "media_video_extract",
+      "label": "Video Frame Extract",
+      "category": "media",
+      "description": "Extract frames from video"
+    },
+    {
+      "id": "ml_embed",
+      "label": "Embed Text",
+      "category": "ml",
+      "description": "Create vector embeddings"
+    },
+    {
+      "id": "ml_rag_retrieve",
+      "label": "RAG Retrieve",
+      "category": "ml",
+      "description": "Retrieve relevant documents for context"
+    },
+    {
+      "id": "notify_email",
+      "label": "Email Notify",
+      "category": "notify",
+      "description": "Send notification: Send email notifications"
+    },
+    {
+      "id": "notify_sms",
+      "label": "SMS Notify",
+      "category": "notify",
+      "description": "Send notification: Send SMS notifications"
+    },
+    {
+      "id": "schedule_cron",
+      "label": "Cron Trigger",
+      "category": "schedule",
+      "description": "Fire on cron expression"
+    },
+    {
+      "id": "schedule_interval",
+      "label": "Interval Trigger",
+      "category": "schedule",
+      "description": "Fire on fixed interval"
+    },
+    {
+      "id": "security_scan",
+      "label": "Security Scan",
+      "category": "security",
+      "description": "Scan payloads for vulnerabilities"
+    },
+    {
+      "id": "security_encrypt",
+      "label": "Encrypt",
+      "category": "security",
+      "description": "Encrypt sensitive fields"
+    },
+    {
+      "id": "selfHeal",
+      "label": "Self Heal",
+      "category": "selfHeal",
+      "description": "Auto-repair failed API responses with AI"
+    },
+    {
+      "id": "selfHeal_circuit",
+      "label": "Circuit Breaker",
+      "category": "selfHeal",
+      "description": "Trip circuit on repeated failures"
+    },
+    {
+      "id": "storage_s3",
+      "label": "S3 Storage",
+      "category": "storage",
+      "description": "Read/write AWS S3 objects"
+    },
+    {
+      "id": "storage_gcs",
+      "label": "GCS Storage",
+      "category": "storage",
+      "description": "Read/write Google Cloud Storage"
+    },
+    {
+      "id": "text",
+      "label": "Text Generate",
+      "category": "text",
+      "description": "Generate text with LLM"
+    },
+    {
+      "id": "text_summarize",
+      "label": "Summarize",
+      "category": "text",
+      "description": "Summarize long text content"
+    },
+    {
+      "id": "transform",
+      "label": "Transform Data",
+      "category": "transform",
+      "description": "Map and reshape JSON payloads"
+    },
+    {
+      "id": "transform_merge",
+      "label": "Merge Data",
+      "category": "transform",
+      "description": "Merge multiple inputs into one object"
+    },
+    {
+      "id": "trigger",
+      "label": "Manual Trigger",
+      "category": "trigger",
+      "description": "Start workflow manually or via API call"
+    },
+    {
+      "id": "trigger_webhook",
+      "label": "Webhook Trigger",
+      "category": "trigger",
+      "description": "Start when an inbound webhook is received"
+    },
+    {
+      "id": "vision",
+      "label": "Vision Analyze",
+      "category": "vision",
+      "description": "Analyze images with multimodal AI"
+    },
+    {
+      "id": "vision_ocr",
+      "label": "OCR Extract",
+      "category": "vision",
+      "description": "Extract text from images and documents"
+    },
+    {
+      "id": "voice",
+      "label": "Voice Transcribe",
+      "category": "voice",
+      "description": "Transcribe audio to text"
+    },
+    {
+      "id": "voice_synthesize",
+      "label": "Voice Synthesize",
+      "category": "voice",
+      "description": "Convert text to natural speech"
+    },
+    {
+      "id": "webhookOut",
+      "label": "Webhook Out",
+      "category": "webhook",
+      "description": "Send payload to external webhook URL"
+    },
+    {
+      "id": "webhook_receive",
+      "label": "Webhook Receive",
+      "category": "webhook",
+      "description": "Wait for and validate inbound webhook"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "FREE",
+      "name": "Community",
+      "priceLabel": "$0",
+      "highlighted": false,
+      "features": [
+        "Visual workflow builder",
+        "500 self-heal credits / mo",
+        "Community templates",
+        "Offline drafts"
+      ]
+    },
+    {
+      "id": "STARTER",
+      "name": "Builder",
+      "priceLabel": "$39",
+      "highlighted": false,
+      "features": [
+        "Full node palette",
+        "Idea-to-canvas",
+        "Code export",
+        "8,000 credits / mo",
+        "Publish free templates"
+      ]
+    },
+    {
+      "id": "PRO",
+      "name": "Pro",
+      "priceLabel": "$129",
+      "highlighted": true,
+      "features": [
+        "Up to 50 modules",
+        "Sell on marketplace",
+        "Priority self-healing",
+        "Team roles",
+        "40,000 credits / mo"
+      ]
+    },
+    {
+      "id": "ENTERPRISE",
+      "name": "Enterprise",
+      "priceLabel": "Custom",
+      "highlighted": false,
+      "features": [
+        "SSO & org controls",
+        "Custom SLAs",
+        "12% marketplace fee (vs 20%)",
+        "Volume credits"
+      ]
+    }
+  ],
+  "marketplace": [
+    {
+      "id": "m1",
+      "title": "Checkout heal pack",
+      "price": 0,
+      "priceLabel": "Free",
+      "seller": "Resync Labs",
+      "desc": "Commerce recovery nodes + notify path.",
+      "category": "Commerce"
+    },
+    {
+      "id": "m2",
+      "title": "Vision intake kit",
+      "price": 29,
+      "priceLabel": "$29",
+      "seller": "Studio North",
+      "desc": "Classify, filter, and route image uploads.",
+      "category": "Vision"
+    },
+    {
+      "id": "m3",
+      "title": "Incident responder",
+      "price": 49,
+      "priceLabel": "$49",
+      "seller": "Ops Collective",
+      "desc": "Alert \u2192 probe \u2192 restart with Slack.",
+      "category": "DevOps"
+    },
+    {
+      "id": "m4",
+      "title": "RAG support desk",
+      "price": 79,
+      "priceLabel": "$79",
+      "seller": "Agentic Co",
+      "desc": "Retrieve docs and draft replies.",
+      "category": "Agent"
+    }
+  ],
+  "marketplaceFees": {
+    "buyer": "10%",
+    "seller": "10%",
+    "total": "20%",
+    "enterprise": "12%"
+  },
+  "communitySeed": [
+    {
+      "id": "c1",
+      "author": "builder_nova",
+      "body": "Shared a vision\u2192notify template for support tickets. Feedback welcome.",
+      "likes": 24,
+      "time": "2h ago"
+    },
+    {
+      "id": "c2",
+      "author": "ops_mira",
+      "body": "Self-heal rate jumped after pairing Schema patch with Fallback HTTP.",
+      "likes": 41,
+      "time": "5h ago"
+    },
+    {
+      "id": "c3",
+      "author": "canvas_kai",
+      "body": "Looking for a good voice\u2192text\u2192CRM path. Any Pro templates?",
+      "likes": 12,
+      "time": "1d ago"
+    }
+  ],
+  "bannedWords": [
+    "spam",
+    "scam",
+    "hate",
+    "phishing"
+  ],
+  "vision": "Resync AI exists so multimodal automations recover gracefully\u2014builders ship faster, operators sleep better, and communities remix what works.",
+  "privacySummary": "This offline pack stores drafts only in your browser/session. The full cloud product may use accounts, billing, and optional telemetry under a published Privacy Policy. Do not paste secrets into the static agent.",
+  "termsSummary": "Use of Resync AI materials is subject to Terms of Service. Marketplace purchases include platform fees (typically 10% buyer + 10% seller). Enterprise may negotiate lower fees. This zip is a preview SPA, not a production SLA.",
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home"
+    },
+    {
+      "id": "builder",
+      "label": "Builder"
+    },
+    {
+      "id": "multimodal",
+      "label": "Multimodal"
+    },
+    {
+      "id": "studio",
+      "label": "Studio"
+    },
+    {
+      "id": "community",
+      "label": "Community"
+    },
+    {
+      "id": "marketplace",
+      "label": "Marketplace"
+    },
+    {
+      "id": "pricing",
+      "label": "Pricing"
+    },
+    {
+      "id": "vision",
+      "label": "Vision"
+    },
+    {
+      "id": "privacy",
+      "label": "Privacy"
+    },
+    {
+      "id": "terms",
+      "label": "Terms"
+    }
+  ]
+}

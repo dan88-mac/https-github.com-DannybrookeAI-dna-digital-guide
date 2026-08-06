@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#05080f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Resync AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="atmosphere" aria-hidden="true"></div>
+
+    <header class="glass">
+      <div class="header-inner">
+        <a href="#home" class="logo" data-nav="home">
+          <span class="logo-mark">R</span>
+          <span class="logo-text">Resync AI</span>
+        </a>
+        <nav id="desktop-nav"></nav>
+        <button type="button" class="menu-btn" id="menu-btn" aria-label="Menu">Menu</button>
+        <a href="#builder" class="btn-primary" data-nav="builder">Builder</a>
+      </div>
+      <div class="mobile-nav glass" id="mobile-nav"></div>
+    </header>
+
+    <main id="app"></main>
+
+    <footer>
+      <p class="footer-brand">Resync AI</p>
+      <p>Self-healing multimodal workflows. Offline iPhone pack.</p>
+      <p class="footer-links">
+        <a href="#privacy" data-nav="privacy">Privacy</a>
+        ·
+        <a href="#terms" data-nav="terms">Terms</a>
+        ·
+        <a href="#vision" data-nav="vision">Vision</a>
+      </p>
+      <p>© <span id="year"></span> Resync AI</p>
+    </footer>
+
+    <button type="button" class="agent-fab" id="agent-fab" aria-label="Ask a-sync agent">
+      Ask a-sync agent
+    </button>
+    <div class="agent-panel glass" id="agent-panel" hidden>
+      <div class="agent-panel-head">
+        <div>
+          <strong>a-sync agent</strong>
+          <p>Advise · recommend · navigate. Does not build full workflows.</p>
+        </div>
+        <button type="button" class="btn-ghost agent-close" id="agent-close" aria-label="Close">×</button>
+      </div>
+      <div class="agent-messages" id="agent-messages"></div>
+      <form class="agent-form" id="agent-form">
+        <input type="text" id="agent-input" placeholder="Ask a-sync agent…" autocomplete="off" />
+        <button type="submit" class="btn-primary">Send</button>
+      </form>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

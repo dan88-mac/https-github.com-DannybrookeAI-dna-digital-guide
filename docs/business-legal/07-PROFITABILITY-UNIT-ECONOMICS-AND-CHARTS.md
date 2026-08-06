@@ -4,21 +4,25 @@
 
 ## Pricing reference (product)
 
+Aligned with live product `resync-ai/lib/billing/tiers.ts` (August 2026 remodel):
+
 | Tier | Price (indicative) | Credits/mo |
 |------|-------------------|------------|
 | Community | $0 | 500 |
-| Starter | $29 | 5,000 |
-| Pro | $99 | 25,000 |
+| Builder | $39 | 8,000 |
+| Pro | $129 | 40,000 |
 | Enterprise | Custom | 500,000+ |
+
+Marketplace: **10% buyer + 10% seller = 20%** total (Enterprise negotiable to **12%**).
 
 ## Unit economics (Pro customer example)
 
 | Line | Monthly value |
 |------|----------------|
-| ARPU (Pro) | $99 |
-| Est. infra + OpenAI COGS | $18–28 |
-| Gross profit | ~$71–81 |
-| Gross margin | ~72–82% |
+| ARPU (Pro) | $129 |
+| Est. infra + OpenAI COGS | $22–35 |
+| Gross profit | ~$94–107 |
+| Gross margin | ~73–83% |
 
 ## Five-year revenue scenarios (illustrative ARR)
 

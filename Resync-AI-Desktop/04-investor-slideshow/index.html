@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resync AI — Investor & Staff Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #05080f;
+      --panel: #0e1524;
+      --border: #1c2740;
+      --text: #f4f7fb;
+      --muted: #94a3b8;
+      --cyan: #22d3ee;
+      --indigo: #6366f1;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: "DM Sans", system-ui, sans-serif; }
+    body {
+      background:
+        radial-gradient(ellipse 70% 50% at 50% -10%, rgba(34,211,238,.14), transparent 55%),
+        radial-gradient(ellipse 50% 40% at 100% 80%, rgba(99,102,241,.12), transparent 50%),
+        var(--bg);
+    }
+    .deck { height: 100%; display: flex; flex-direction: column; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 20px; border-bottom: 1px solid var(--border);
+      background: rgba(14,21,36,.75); backdrop-filter: blur(10px);
+    }
+    .brand { font-family: Syne, sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+    .brand span { background: linear-gradient(100deg,#67e8f9,#a5b4fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .meta { color: var(--muted); font-size: 13px; }
+    .stage { flex: 1; position: relative; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0; padding: clamp(24px, 4vw, 56px);
+      display: none; flex-direction: column; justify-content: center;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      animation: rise .35s ease;
+    }
+    .slide.active { display: flex; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    h1 { font-family: Syne, sans-serif; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; margin: 0 0 16px; letter-spacing: -0.03em; }
+    h2 { font-family: Syne, sans-serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin: 0 0 14px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: 11px; color: #67e8f9; font-weight: 600; margin-bottom: 10px; }
+    p, li { color: var(--muted); line-height: 1.55; font-size: clamp(15px, 1.6vw, 18px); }
+    ul { padding-left: 1.1em; }
+    .grid { display: grid; gap: 14px; margin-top: 18px; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .card {
+      background: rgba(14,21,36,.8); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 18px;
+    }
+    .card h3 { margin: 0 0 8px; font-family: Syne, sans-serif; font-size: 1.05rem; color: var(--text); }
+    .card p, .card li { font-size: 14px; margin: 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 14px; }
+    th, td { border-bottom: 1px solid var(--border); padding: 10px 8px; text-align: left; }
+    th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+    .score {
+      display: inline-flex; align-items: baseline; gap: 8px;
+      font-family: Syne, sans-serif; font-weight: 800; font-size: 2.4rem;
+      background: linear-gradient(100deg,#67e8f9,#a5b4fc); -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .bar { height: 8px; background: #1c2740; border-radius: 99px; overflow: hidden; margin-top: 8px; }
+    .bar > i { display: block; height: 100%; background: linear-gradient(90deg, #06b6d4, #6366f1); border-radius: 99px; }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 12px 20px; border-top: 1px solid var(--border);
+      background: rgba(14,21,36,.85);
+    }
+    button {
+      border: 1px solid var(--border); background: transparent; color: var(--text);
+      border-radius: 10px; padding: 10px 14px; font: inherit; cursor: pointer;
+    }
+    button.primary { background: linear-gradient(135deg,#06b6d4,#4f46e5); border: none; font-weight: 600; }
+    button:disabled { opacity: .35; cursor: default; }
+    .dots { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 60%; }
+    .dots span { width: 7px; height: 7px; border-radius: 50%; background: #334155; }
+    .dots span.on { background: #22d3ee; }
+    .note { font-size: 12px; color: #64748b; margin-top: 18px; }
+    .hero-sub { max-width: 42ch; }
+    @media print {
+      .topbar, .nav { display: none; }
+      .slide { position: relative; display: flex !important; page-break-after: always; min-height: 100vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <div class="topbar">
+      <div class="brand"><span>Resync AI</span> · Showcase</div>
+      <div class="meta" id="counter">1 / 1</div>
+    </div>
+    <div class="stage" id="stage"></div>
+    <div class="nav">
+      <button type="button" id="prev">← Prev</button>
+      <div class="dots" id="dots"></div>
+      <button type="button" class="primary" id="next">Next →</button>
+    </div>
+  </div>
+
+  <template id="slides-data">
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Investor · staff · developer briefing</p>
+  <h1>Resync AI</h1>
+  <p class="hero-sub">Self-healing multimodal workflow SaaS — from idea to canvas to production, with community, marketplace, and an always-on a-sync agent.</p>
+  <div class="grid grid-3">
+    <div class="card"><h3>Purpose</h3><p>Automations that recover before on-call wakes up.</p></div>
+    <div class="card"><h3>Model</h3><p>Subscription + credits + 20% marketplace take rate.</p></div>
+    <div class="card"><h3>Ready</h3><p>Full-stack Next.js app + offline demo pack + deploy guides.</p></div>
+  </div>
+  <p class="note">Illustrative materials · Not an offer to sell securities · Financial figures are scenarios.</p>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Agenda</p>
+  <h2>What this deck covers</h2>
+  <ul>
+    <li>What the product is, who it is for, and why it exists</li>
+    <li>Vision, mission, and 5–10 year horizon</li>
+    <li>Ground-up stack, modules, and deployment readiness</li>
+    <li>Real scoring criteria (product overview score + SaaS health)</li>
+    <li>Live-category comps (Zapier, Make, n8n, Temporal-class)</li>
+    <li>Illustrative economics, analytics targets, and net-profit outlook</li>
+    <li>Features that compound revenue over the next 5 years</li>
+    <li>Automated SaaS operating model for investors, staff, developers</li>
+  </ul>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Product</p>
+  <h2>What Resync AI is</h2>
+  <p>A visual, multimodal workflow platform where builders compose up to ~50 modules (vision, voice, text, HTTP, heal, devops, agents…), validate graphs, export paths, and run with self-healing in mind.</p>
+  <div class="grid grid-2">
+    <div class="card"><h3>Core surfaces</h3><p>Home · Builder · Multimodal catalog · Studio · Community · Marketplace · Pricing · Legal · a-sync agent</p></div>
+    <div class="card"><h3>Not just a toy canvas</h3><p>~260 catalog modules, pairing hints, overview scoring, Stripe-ready tiers, Supabase-shaped multi-tenant direction.</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Jobs to be done</p>
+  <h2>What it is used for</h2>
+  <div class="grid grid-2">
+    <div class="card"><h3>Builders</h3><p>Idea → graph, wire multimodal paths, publish templates, export.</p></div>
+    <div class="card"><h3>Operators</h3><p>Self-heal loops, credits, audit-friendly structure, fewer 3 a.m. pages.</p></div>
+    <div class="card"><h3>Teams</h3><p>Shared library, marketplace packs, community feedback loops.</p></div>
+    <div class="card"><h3>Enterprises</h3><p>Custom SLAs, lower marketplace fee band, SSO/org controls roadmap.</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Vision</p>
+  <h2>North star</h2>
+  <p>Become the default <strong style="color:#e2e8f0">self-healing layer</strong> for workflow automation — the place teams return when integrations fail, launches accelerate, and communities depend on reliable software.</p>
+  <div class="grid grid-2">
+    <div class="card"><h3>Mission</h3><p>Design, run, and export workflows that recover in production — while a template ecosystem compounds value.</p></div>
+    <div class="card"><h3>Brand promise</h3><p>Reliability over hype. Open community, proprietary core. Long horizon funded by unit economics.</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Future endeavors</p>
+  <h2>Where we are going</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Near</h3><p>PMF on builder + heal + community; Pro marketplace sellers; PLG funnel.</p></div>
+    <div class="card"><h3>Mid</h3><p>SOC 2 path, collab canvas, connector packs, enterprise SSO.</p></div>
+    <div class="card"><h3>Long</h3><p>Runtime API / OEM, industry packs, multi-region platform leadership.</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Stages</p>
+  <h2>Build & go-live stages</h2>
+  <table>
+    <tr><th>Stage</th><th>Focus</th><th>Exit criteria</th></tr>
+    <tr><td>0 · Pack</td><td>Desktop + static preview + contracts</td><td>Demoable offline + docs</td></tr>
+    <tr><td>1 · Cloud</td><td>Vercel Root = resync-ai, env vars, health</td><td>/ and /api/health live</td></tr>
+    <tr><td>2 · Data</td><td>Supabase migrations + auth</td><td>Sign-in + saved graphs</td></tr>
+    <tr><td>3 · Money</td><td>Stripe tiers + marketplace fees</td><td>Paid upgrade path</td></tr>
+    <tr><td>4 · Scale</td><td>Observability, SOC2, enterprise</td><td>NRR &gt; 100%, logo churn &lt; 8%</td></tr>
+  </table>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Guides in this pack</p>
+  <h2>Operational playbooks</h2>
+  <div class="grid grid-2">
+    <div class="card"><h3>05-guides/</h3><p>VERCEL-DEPLOY · iPhone view · Deploy-from-GitHub · Master blueprint · Next steps</p></div>
+    <div class="card"><h3>03-contracts-pdf/review/</h3><p>Full last-look checklist vs NSW draft criteria + live pricing alignment</p></div>
+    <div class="card"><h3>run.bat</h3><p>Node/npm/Python check → install → typecheck → localhost:3000</p></div>
+    <div class="card"><h3>02-static-preview</h3><p>Clean remodel UI without install — ideal for first investor glance</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Ground up</p>
+  <h2>What the website is built with</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>App</h3><p>Next.js 14 App Router · React 18 · TypeScript · Tailwind</p></div>
+    <div class="card"><h3>Canvas</h3><p>@xyflow/react · module catalog · pairing · overview score</p></div>
+    <div class="card"><h3>Platform</h3><p>Supabase-ready · Stripe tiers · OpenAI hooks · Zod</p></div>
+    <div class="card"><h3>Agent</h3><p>Site-wide a-sync agent (advise / navigate — not full workflow builder)</p></div>
+    <div class="card"><h3>Mobile</h3><p>PWA/Capacitor direction · koder-pack · iPhone zip</p></div>
+    <div class="card"><h3>Deploy</h3><p>Vercel (Node) · Netlify static preview · GitHub Actions CI</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Architecture positives</p>
+  <h2>Why the structure is strong</h2>
+  <ul>
+    <li><strong style="color:#e2e8f0">Separation of concerns:</strong> marketing, builder engine, billing types, agent shell.</li>
+    <li><strong style="color:#e2e8f0">Catalog-driven modules:</strong> scalable palette (~260) instead of hard-coded demos.</li>
+    <li><strong style="color:#e2e8f0">Scoreable graphs:</strong> production-minded pillars, not vanity metrics alone.</li>
+    <li><strong style="color:#e2e8f0">Dual delivery:</strong> full Next app + static SPA for demos/offline.</li>
+    <li><strong style="color:#e2e8f0">Monorepo honesty:</strong> documented Root Directory so cloud deploys don’t serve “Index of /”.</li>
+  </ul>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Deployment readiness</p>
+  <h2>Full-stack readiness scorecard</h2>
+  <p>Rubric inspired by common SaaS launch reviews (architecture, DX, commercial, compliance posture). Scores are <em>internal assessments</em> of the current codebase shape — not third-party audits.</p>
+  <div class="grid grid-2">
+    <div class="card"><h3>Product surface completeness</h3><div class="score">88</div><div class="bar"><i style="width:88%"></i></div><p>Core routes + agent + catalog depth</p></div>
+    <div class="card"><h3>Engineering structure</h3><div class="score">86</div><div class="bar"><i style="width:86%"></i></div><p>TS engine, tests path, CI workflow</p></div>
+    <div class="card"><h3>Commercial wiring</h3><div class="score">78</div><div class="bar"><i style="width:78%"></i></div><p>Tiers coded; Stripe envs still to connect</p></div>
+    <div class="card"><h3>Compliance / legal ops</h3><div class="score">62</div><div class="bar"><i style="width:62%"></i></div><p>Strong drafts; entity + counsel pending</p></div>
+  </div>
+  <p class="note">Composite readiness ≈ 79 / 100 — “demo &amp; soft-launch capable”; harden billing + entity for revenue ops.</p>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">In-product scoring</p>
+  <h2>Overview score pillars (real criteria in code)</h2>
+  <p>From <code>overviewScore.ts</code> — grades A+→F used on live graphs:</p>
+  <table>
+    <tr><th>Pillar</th><th>What it measures</th></tr>
+    <tr><td>Structural integrity</td><td>Valid graph, connectivity, worker validation</td></tr>
+    <tr><td>Multimodal coverage</td><td>Vision / voice / text chain richness</td></tr>
+    <tr><td>Resilience ratio</td><td>Self-heal density vs failure paths</td></tr>
+    <tr><td>Library grounding</td><td>Modules tied to real SDK/libraries</td></tr>
+    <tr><td>Schedule / ops maturity</td><td>Cron, human, devops, security modules</td></tr>
+    <tr><td>Real-world readiness</td><td>Triggers, outputs, labels, size ≤ 50</td></tr>
+    <tr><td>Pairing compliance</td><td>Recommended module pairs present</td></tr>
+  </table>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Category comps</p>
+  <h2>Similar live products (positioning)</h2>
+  <table>
+    <tr><th>Product</th><th>Strength today</th><th>Resync angle</th></tr>
+    <tr><td>Zapier</td><td>Huge app directory, PLG</td><td>Deeper heal + multimodal + export ethos</td></tr>
+    <tr><td>Make</td><td>Visual scenarios, ops users</td><td>Scoreable resilience + agent guidance</td></tr>
+    <tr><td>n8n</td><td>Open/self-host, power users</td><td>Managed SaaS + marketplace + community</td></tr>
+    <tr><td>Temporal / Conductor-class</td><td>Durable execution</td><td>Builder UX + heal for mixed modality teams</td></tr>
+  </table>
+  <p class="note">Comps are category context — not feature-complete parity claims.</p>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Public SaaS benchmarks</p>
+  <h2>Health metrics used by running SaaS companies</h2>
+  <table>
+    <tr><th>Metric</th><th>Healthy B2B SaaS band</th><th>Resync planning target</th></tr>
+    <tr><td>Gross margin</td><td>75–85%</td><td>80%+ with managed API COGS</td></tr>
+    <tr><td>Net revenue retention</td><td>100–120%</td><td>110%+ on Pro+</td></tr>
+    <tr><td>CAC payback</td><td>12–18 months</td><td>&lt; 14 months on Pro</td></tr>
+    <tr><td>Logo churn (annual)</td><td>5–10%</td><td>&lt; 8% with community lock-in</td></tr>
+    <tr><td>Operating margin (scale)</td><td>15–25% mature</td><td>20–25% by Y5 base case</td></tr>
+  </table>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Pricing</p>
+  <h2>Live commercial offer</h2>
+  <div class="grid grid-2">
+    <div class="card"><h3>Community — $0</h3><p>Builder entry · 500 credits · templates</p></div>
+    <div class="card"><h3>Builder — $39</h3><p>Full palette · idea-to-canvas · 8k credits</p></div>
+    <div class="card"><h3>Pro — $129</h3><p>50 modules · sell on marketplace · 40k credits</p></div>
+    <div class="card"><h3>Enterprise — Custom</h3><p>SSO/SLA · 12% marketplace fee vs 20%</p></div>
+  </div>
+  <p class="note">Marketplace: 10% buyer + 10% seller. Source: tiers.ts</p>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Illustrative economics</p>
+  <h2>ARR scenarios (planning only)</h2>
+  <table>
+    <tr><th>Year</th><th>Conservative</th><th>Base</th><th>Aggressive</th></tr>
+    <tr><td>Y1</td><td>$120k</td><td>$240k</td><td>$480k</td></tr>
+    <tr><td>Y2</td><td>$350k</td><td>$720k</td><td>$1.4M</td></tr>
+    <tr><td>Y3</td><td>$800k</td><td>$1.8M</td><td>$3.5M</td></tr>
+    <tr><td>Y4</td><td>$1.5M</td><td>$3.6M</td><td>$7M</td></tr>
+    <tr><td>Y5</td><td>$2.4M</td><td>$6M</td><td>$12M</td></tr>
+  </table>
+  <p class="note">From business-legal doc 07 — replace with actuals quarterly. Not a forecast guarantee.</p>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Profit outlook</p>
+  <h2>What “capable of meeting” means</h2>
+  <div class="grid grid-2">
+    <div class="card"><h3>Y3 base sketch</h3><p>~$1.8M ARR · ~25% EBITDA example → ~$450k profit pool → 50/50 partner split subject to reinvestment votes.</p></div>
+    <div class="card"><h3>Compared to category</h3><p>Workflow SaaS leaders show strong gross margins; path to profit is mix shift to Pro/Enterprise + controlled model COGS + NRR.</p></div>
+  </div>
+  <p>Capability claim: <strong style="color:#e2e8f0">meet base-case unit economics</strong> if PLG conversion (12–18% activated→paid) and &lt;8% logo churn hold — same levers used by live PLG SaaS, not unique magic.</p>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Analytics to run weekly</p>
+  <h2>Operating dashboard</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Growth</h3><p>MRR, ARR, net new MRR, signup→activated</p></div>
+    <div class="card"><h3>Product</h3><p>Self-heal success %, template reuse %, overview grade mix</p></div>
+    <div class="card"><h3>Efficiency</h3><p>CAC, LTV, payback, credit COGS / ARPU</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">5-year feature roadmap</p>
+  <h2>Year 1–2 — revenue foundations</h2>
+  <ul>
+    <li>Stripe live + credit overage</li>
+    <li>Marketplace seller payouts (20% platform)</li>
+    <li>Template SEO / community spotlight → PLG</li>
+    <li>Overview-score gated “production ready” badge</li>
+    <li>a-sync agent memory across sessions</li>
+  </ul>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">5-year feature roadmap</p>
+  <h2>Year 3–4 — expansion revenue</h2>
+  <ul>
+    <li>Team seats / RBAC · audit exports</li>
+    <li>Salesforce / HubSpot connector packs</li>
+    <li>Realtime collab canvas</li>
+    <li>SOC 2 Type I→II · enterprise security pack</li>
+    <li>Certification / training attach (services margin)</li>
+  </ul>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">5-year feature roadmap</p>
+  <h2>Year 5 — platform leverage</h2>
+  <ul>
+    <li>Public Runtime API / webhooks for ISVs</li>
+    <li>OEM white-label for agencies</li>
+    <li>Industry packs (commerce, education, nonprofit)</li>
+    <li>Multi-region workers · VPC options</li>
+    <li>Metered enterprise contracts</li>
+  </ul>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Automated SaaS model</p>
+  <h2>How the business runs with less heroics</h2>
+  <div class="grid grid-2">
+    <div class="card"><h3>Acquire</h3><p>Content + templates + agent-guided onboarding (PLG)</p></div>
+    <div class="card"><h3>Activate</h3><p>Studio idea→graph · score ≥ B before “go live”</p></div>
+    <div class="card"><h3>Monetize</h3><p>Credits + upgrade walls + marketplace take rate</p></div>
+    <div class="card"><h3>Retain</h3><p>Library, heal telemetry, community status, exports</p></div>
+  </div>
+  <p>Staffing intent: founders + selective contractors early; automation in billing, scoring, and agent support before heavy SDR spend.</p>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">For investors</p>
+  <h2>Why this is interesting</h2>
+  <ul>
+    <li>Clear category (workflow) with a differentiated heal + multimodal wedge</li>
+    <li>Multiple compounding surfaces (subs, usage, marketplace, later API)</li>
+    <li>Codebase already shaped for demo and cloud deploy — not vapor slides only</li>
+    <li>Governance drafts at 50/50 with NSW formation path (counsel still required)</li>
+  </ul>
+  <p class="note">This deck is informational. It is not a prospectus or investment solicitation.</p>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">For staff &amp; developers</p>
+  <h2>How to work the system</h2>
+  <div class="grid grid-2">
+    <div class="card"><h3>Developers</h3><p>Own engine modules, score pillars, CI green, Root Directory discipline on Vercel.</p></div>
+    <div class="card"><h3>Staff / ops</h3><p>Track heal rate, credits, funnel; keep contracts/pricing annex synced to tiers.ts.</p></div>
+    <div class="card"><h3>Community</h3><p>Moderate feed, spotlight templates, grow marketplace supply.</p></div>
+    <div class="card"><h3>Leadership</h3><p>Major decisions unanimous; reinvest vs distribute per agreement.</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Contracts</p>
+  <h2>Governance pack in this folder</h2>
+  <p>Full PDFs for both partners + markdown sources + <strong style="color:#e2e8f0">CONTRACT-REVIEW-CHECKLIST.md</strong> (pricing aligned to $0 / $39 / $129; blanks called out; counsel required).</p>
+  <div class="grid grid-2">
+    <div class="card"><h3>Open</h3><p>open-contracts.bat</p></div>
+    <div class="card"><h3>Blocking before sign</h3><p>Schedules A/B, thresholds, entity, solicitor review</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Demo paths</p>
+  <h2>Show the clean website</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Instant</h3><p>open-preview.bat → static remodel UI</p></div>
+    <div class="card"><h3>Full stack</h3><p>run.bat → npm install → localhost:3000</p></div>
+    <div class="card"><h3>Phone</h3><p>resync-ai-iphone.zip → Koder</p></div>
+  </div>
+</section>
+<!-- SLIDE -->
+<section>
+  <p class="eyebrow">Closing</p>
+  <h1>Build once. Heal always. Compound.</h1>
+  <p class="hero-sub">Resync AI is a deployment-ready multimodal SaaS shape with a clear automated business model, honest draft governance, and a five-year ladder from PLG to platform.</p>
+  <div class="grid grid-3">
+    <div class="card"><h3>Next</h3><p>Enable billing envs · counsel pass · ship Pro marketplace</p></div>
+    <div class="card"><h3>Measure</h3><p>Overview grades · NRR · heal success</p></div>
+    <div class="card"><h3>Share</h3><p>This deck + PDFs + live preview</p></div>
+  </div>
+  <p class="note">© Resync AI · Desktop investor pack · Arrow keys to navigate · P to print/PDF</p>
+</section>
+  </template>
+
+  <script>
+    const stage = document.getElementById("stage");
+    const raw = document.getElementById("slides-data");
+    const sections = Array.from(raw.content.querySelectorAll("section"));
+    sections.forEach((sec, i) => {
+      const slide = document.createElement("article");
+      slide.className = "slide" + (i === 0 ? " active" : "");
+      slide.innerHTML = sec.innerHTML;
+      stage.appendChild(slide);
+    });
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const dots = document.getElementById("dots");
+    slides.forEach((_, i) => {
+      const d = document.createElement("span");
+      if (i === 0) d.className = "on";
+      dots.appendChild(d);
+    });
+    let idx = 0;
+    function show(n) {
+      idx = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, i) => s.classList.toggle("active", i === idx));
+      dots.querySelectorAll("span").forEach((d, i) => d.classList.toggle("on", i === idx));
+      document.getElementById("counter").textContent = idx + 1 + " / " + slides.length;
+      document.getElementById("prev").disabled = idx === 0;
+      document.getElementById("next").disabled = idx === slides.length - 1;
+    }
+    document.getElementById("prev").onclick = () => show(idx - 1);
+    document.getElementById("next").onclick = () => show(idx + 1);
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); show(idx + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); show(idx - 1); }
+      if (e.key === "Home") show(0);
+      if (e.key === "End") show(slides.length - 1);
+      if (e.key.toLowerCase() === "p") window.print();
+    });
+    show(0);
+  </script>
+</body>
+</html>

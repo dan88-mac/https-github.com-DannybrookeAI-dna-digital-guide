@@ -19,11 +19,11 @@ Resync combines **visual workflow building** (n8n/Zapier lane) with **AI-assiste
 
 | Model | Examples | Resync application |
 |-------|----------|-------------------|
-| **Subscription SaaS** | Monthly tiers | Community / Starter / Pro / Enterprise |
+| **Subscription SaaS** | Monthly tiers | Community / Builder / Pro / Enterprise |
 | **Usage / credits** | API meters | Self-heal credits per org |
 | **Freemium + community** | Templates, gallery | Free tier + template reuse |
 | **Land & expand** | Team seats, roles | Org members + RBAC |
-| **Platform / marketplace** | Template revenue share | Future: paid community templates |
+| **Platform / marketplace** | Template revenue share | 20% take rate (10%+10%); Enterprise 12% |
 | **Services attach** | Implementation partners | Enterprise onboarding packages |
 
 ## Revenue streams (Resync stack)

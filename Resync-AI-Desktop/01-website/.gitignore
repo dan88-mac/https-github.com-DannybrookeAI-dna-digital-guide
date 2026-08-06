@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+.env.local
+.env*.local
+.vercel
+playwright-report
+test-results
+data/agent-memory.json

@@ -1,0 +1,59 @@
+================================================================================
+RESYNC AI — FULL IDE REBUILD PROMPT (FINAL LOOK + PRODUCT SCOPE)
+Paste this entire file into Cursor / any IDE agent as ONE shot to rebuild the app.
+Repo target: Next.js 14 App Router in folder resync-ai/, deploy Vercel Root Directory
+resync-ai (optional Netlify for koder-pack preview only).
+Brand: Resync AI (a-sync-ai). NO personal names, NO 50/50 partnership, NO founder credits
+on any public SaaS surface.
+================================================================================
+
+## 0) NON-NEGOTIABLES
+- Dark near-black theme (#050508), cyan + deep indigo accents — NOT purple-on-white.
+- Fonts: Syne + DM Sans + JetBrains Mono — not Inter/Roboto/Arial.
+- Landing first viewport: brand Resync AI hero-level, ONE headline, ONE sentence, ONE CTA group,
+  ONE full-bleed canvas node network. No cards in hero.
+- No "coming soon" placeholders. Self-heal is ONE module — not the whole product.
+- a-sync agent advises ONE module / navigates — never auto-builds full circuits.
+
+## 1) TECH STACK
+Next.js 14 App Router, React 18, TypeScript, Tailwind, @xyflow/react, Zod,
+optional Supabase + Stripe, Canvas 2D marketing loops.
+vercel.json builds -> resync-ai/package.json with @vercel/next.
+Commit package-lock.json.
+
+## 2) ROUTES
+/ landing immersive | /builder multimodal studio | /multimodal 260-module catalog
+/studio idea-to-graph | /community feed+moderation | /marketplace free/sub/paid
+/overview-score Pro+ | /pricing $0/$39/$129/Custom | /vision /privacy /terms
+/acceptable-use /trademark | /templates /resources /about /dashboard /login
+Site-wide Ask a-sync agent + help icons
+
+## 3) ENGINE
+moduleCatalog >=200 modules (prefer 260), 24 categories with purpose/uses/libraries/
+pairing/instructions/codeSnippet.
+ideaToCanvas scales small/large/monster (cap 50).
+refinementCalculator + overviewScore 7 pillars.
+moderation + marketplace fees 10%+10%.
+Agent tools: navigate, pricing, community, recommend/add_starter_module (one only).
+
+## 4) BUILDER
+Palette + Browse-all modal, React Flow, Inspector/Refinement/Demo tabs,
+Idea generate, scale slider, validate/save/export, overview chip,
+?template ?design ?addModule, resync:add-module event.
+
+## 5) LANDING ORDER
+HeroImmersive -> SocialProof (honest) -> 2 cinematic loops -> ScaleShowcase
+-> MonsterCanvas -> How it works -> Reviews -> VisionLegal -> CTA
+Animations: pan, transition-lap, drop-down, fade-rise, reveal-wipe, glow-pulse,
+circuit-flow, parallax-drift
+
+## 6) ACCEPTANCE
+Brand-first dark hero; builder generates; multimodal filters; agent one-module;
+overview locked Free; marketplace buy; community moderation; no personal names;
+Vercel + typecheck/build green.
+
+## 7) LIVE
+PR: https://github.com/dan88-mac/https-github.com-DannybrookeAI-dna-digital-guide/pull/4
+Netlify: https://deploy-preview-4--a-syncai.netlify.app
+Branch: cursor/saas-immersive-remodel-d3bc
+================================================================================

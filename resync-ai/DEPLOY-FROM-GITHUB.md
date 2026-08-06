@@ -47,6 +47,10 @@ Vercel → Project → **Domains** → add e.g. `resync.ai` or `.com.au` when re
 
 Push to branch `cursor/resync-ai-full-build-86ce` or `main` after merge; Vercel rebuilds from GitHub without a laptop.
 
+**Full map (cloud ↔ GitHub ↔ Vercel ↔ optional Windows PC):** [../docs/CLOUD-LOCAL-REMOTE-ACCESS-GUIDE.md](../docs/CLOUD-LOCAL-REMOTE-ACCESS-GUIDE.md)
+
+Cloud agent VMs use [.cursor/environment.json](../.cursor/environment.json) for `npm install` and `npm run dev` in `resync-ai/`.
+
 ## Troubleshooting
 
 | Issue | Fix |

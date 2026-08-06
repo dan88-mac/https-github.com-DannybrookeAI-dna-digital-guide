@@ -1,0 +1,11 @@
+{
+  "name": "resync-ai-monorepo",
+  "install": "npm install --prefix resync-ai",
+  "start": "npm run dev --prefix resync-ai",
+  "terminals": [
+    {
+      "name": "resync-dev",
+      "command": "npm run dev --prefix resync-ai"
+    }
+  ]
+}

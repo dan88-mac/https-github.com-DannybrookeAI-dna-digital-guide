@@ -16,6 +16,8 @@ Open [http://localhost:3000](http://localhost:3000).
 
 See [VERCEL-DEPLOY.md](../VERCEL-DEPLOY.md) for production deployment.
 
+**Cloud agents, local dev, and optional remote PC access:** [../docs/CLOUD-LOCAL-REMOTE-ACCESS-GUIDE.md](../docs/CLOUD-LOCAL-REMOTE-ACCESS-GUIDE.md)
+
 ## Deploy
 
 1. **Vercel** — set root directory to `resync-ai`, add env vars from `.env.example`.

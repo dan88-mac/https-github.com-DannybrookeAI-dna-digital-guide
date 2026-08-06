@@ -3,6 +3,7 @@
 | Area | Location |
 |------|----------|
 | **View on iPhone (Safari + Files)** | [IPHONE-VIEW-AND-SAVE.md](IPHONE-VIEW-AND-SAVE.md) |
+| **Media → cloud → iPhone (images/videos)** | [MEDIA-CLOUD-IPHONE-METHOD.md](MEDIA-CLOUD-IPHONE-METHOD.md) · [`cloud-media-pack/`](cloud-media-pack/) · [`scripts/mac-media-backup-to-icloud.sh`](scripts/mac-media-backup-to-icloud.sh) |
 | **Koder preview (5 files)** | [`koder-pack/`](koder-pack/) |
 | **SaaS application** | [`resync-ai/`](resync-ai/) — deploy via Vercel |
 | **Technical blueprint** | [docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md](docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md) |

@@ -2,6 +2,8 @@
 
 You **cannot** run the full Next.js app on iPhone without a cloud deploy—but you **can** view the site in Safari and save all files to the **Files** app.
 
+**Personal images & videos (Mac → iCloud → iPhone):** follow **[MEDIA-CLOUD-IPHONE-METHOD.md](MEDIA-CLOUD-IPHONE-METHOD.md)** — project copies are in `cloud-media-pack/`; run `scripts/mac-media-backup-to-icloud.sh` on your Mac for Photos/Desktop media.
+
 ---
 
 ## Option A — View in Safari (easiest after GitHub Pages is on)

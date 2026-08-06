@@ -1,9 +1,15 @@
-# GitHub Pages (view site in iPhone Safari)
+# GitHub Pages (view koder-pack in iPhone Safari)
+#
+# One-time (repo admin): Settings → Pages → Source = GitHub Actions
+# https://github.com/dan88-mac/https-github.com-DannybrookeAI-dna-digital-guide/settings/pages
+#
+# Until Pages is enabled, deploy-pages returns HTTP 404. This workflow
+# treats that as a warning (job stays green) and prints fix steps.
 name: Pages — Resync preview site
 
 on:
   push:
-    branches: [main, cursor/resync-ai-full-build-86ce]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,21 +22,36 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare site
+      - name: Prepare koder-pack site
         run: |
           mkdir -p _site
           cp -r koder-pack/* _site/
+          rm -f _site/resync-ai-iphone.zip
           touch _site/.nojekyll
-          echo '<meta http-equiv="refresh" content="0;url=./index.html">' > _site/root.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - id: deployment
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v4
+      - name: Explain deploy failure (usually Pages not enabled)
+        if: steps.deployment.outcome != 'success'
+        run: |
+          echo "::warning::Pages deploy did not succeed (often HTTP 404 — Pages not enabled)."
+          echo "Fix once: https://github.com/${GITHUB_REPOSITORY}/settings/pages"
+          echo "Set Build and deployment → Source = GitHub Actions, then re-run this workflow."
+          echo "Offline: download resync-ai-iphone.zip → Files → Koder → index.html Preview."
+          echo "Site URL after enable: https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY##*/}/"

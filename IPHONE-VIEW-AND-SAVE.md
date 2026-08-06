@@ -4,26 +4,26 @@ You **cannot** run the full Next.js app on iPhone without a cloud deploy—but y
 
 ---
 
-## Option A — View in Safari (easiest after GitHub Pages is on)
+## Option A — View in Safari (after GitHub Pages is on)
 
-### One-time setup (2 minutes, on iPhone)
+### Why Actions showed “Creating Pages deployment failed / Not Found”
 
-1. Open **Safari** → [github.com/dan88-mac/https-github.com-DannybrookeAI-dna-digital-guide](https://github.com/dan88-mac/https-github.com-DannybrookeAI-dna-digital-guide)
-2. Tap **Settings** (repo) → **Pages** (or on desktop: repo **Settings → Pages**).
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Merge the branch `cursor/resync-ai-full-build-86ce` into **main** (or ask Cursor to merge the PR).
-5. Wait ~2–5 min for the **Pages — Resync preview site** workflow to finish (green check on **Actions** tab).
+That error means **Pages is not enabled** on the repo yet. The workflow cannot turn it on for you. Until you flip the setting below, deploy is skipped (or used to fail with HTTP 404).
+
+### One-time setup (required)
+
+1. Open [repo Settings → Pages](https://github.com/dan88-mac/https-github.com-DannybrookeAI-dna-digital-guide/settings/pages) (desktop Safari / laptop is easiest).
+2. Under **Build and deployment**, set **Source** to **GitHub Actions** → Save.
+3. Open **Actions** → run **Pages — Resync preview site** (or push any commit to `main`).
+4. Wait for a green check, then open the site URL below.
 
 ### Your live preview URL (Safari)
 
-After Pages is enabled, open:
-
 **https://dan88-mac.github.io/https-github.com-DannybrookeAI-dna-digital-guide/**
 
-Use the menu → **Contracts** to open PDFs and legal docs.  
-This is the same experience as the **Koder pack**, works on iPhone without Koder.
+Same UI as the **Koder pack** / `resync-ai-iphone.zip`.
 
-> If the link 404s, Pages is not enabled yet—use Option B or C below.
+> If the link 404s, Pages is not enabled yet — use the zip (Option C) or Netlify preview `https://deploy-preview-4--a-syncai.netlify.app`.
 
 ---
 

@@ -1,46 +1,45 @@
-# Resync AI — Koder iPhone pack (5 file types only)
+# Resync AI — iPhone / Koder offline pack
 
-Import this **folder** into **Koder** on your iPhone. The site behaves like the live Resync AI app (all main screens).
+Static SPA preview of the Resync AI remodel (brand-first home, builder, multimodal catalog, studio, community, marketplace, pricing, vision/privacy/terms, floating **a-sync agent**).
 
-## Files (exactly 5 types)
+This zip does **not** run the full Next.js app (`resync-ai/`). Use it to open the product UI on iPhone without Vercel or GitHub Actions.
 
-| File | Type | Role |
-|------|------|------|
-| `index.html` | **HTML** | App shell, header, footer |
-| `styles.css` | **CSS** | Dark theme, glass UI, mobile layout |
-| `app.js` | **JavaScript** | Routing, builder, templates, dashboard |
-| `data.json` | **JSON** | Templates, pricing, stats, copy |
-| `README.md` | **Markdown** | This guide |
+## Files (exactly 5 types — Koder-friendly)
 
-No other file types are required.
+| File | Role |
+|------|------|
+| `index.html` | Shell, header, footer (brand only), agent chrome |
+| `styles.css` | Dark near-black + cyan/indigo, glass, motion |
+| `app.js` | Hash router, builder/studio/community UX, agent replies |
+| `data.json` | Catalog subset, pricing $0/$39/$129, marketplace, copy |
+| `README.md` | This guide |
 
-## Setup in Koder
+## Open on iPhone
 
-1. Copy the whole **`koder-pack`** folder to iPhone (Files app, iCloud, or GitHub → download folder).
-2. In **Koder**, open the **`koder-pack`** folder as project.
-3. Open **`index.html`** → use **Preview / Web View** (or Koder’s built-in browser).
-4. Use **Menu** on small screens; desktop nav appears on wider preview.
+1. Download **`resync-ai-iphone.zip`** (repo root, `koder-pack/`, or artifacts).
+2. In **Files**, tap the zip → **Uncompress**.
+3. Open the folder in **Koder** → open **`index.html`** → **Preview** / Web View.
+4. Use **Menu** on small screens; tap **Ask a-sync agent** for navigate/recommend help.
 
-## Screens (same as website)
+### Safari (optional)
 
-- **Home** — hero, stats, templates, waitlist  
-- **Templates** — gallery; tap → **Builder**  
-- **Community** / **Mission** / **Pricing** / **Resources**  
-- **Docs** — deployment guides (Safari)  
-- **Dashboard** — metrics + telemetry table  
-- **Builder** — add nodes, validate, export (preview)  
-- **Sign in** — guest mode → builder  
+Host the unzipped folder (e.g. GitHub Pages) and open `index.html` in Safari. Local `file://` may block `fetch` of `data.json`; the app falls back to embedded data in `app.js`.
 
-## If `data.json` does not load
+## Screens
 
-Some previews block `fetch` on `file://`. The app **automatically falls back** to embedded data in `app.js` — the UI still works.
+- **Home** — brand-first hero + canvas teaser  
+- **Builder** — add modules, validate, export text  
+- **Multimodal** — search/filter catalog → add to builder  
+- **Studio** — idea → simple graph → send to builder  
+- **Community** — feed + compose + word-filter moderation  
+- **Marketplace** — free / paid cards + fee note  
+- **Pricing** — Community $0 / Builder $39 / Pro $129 / Enterprise  
+- **Vision / Privacy / Terms** — short summaries  
+- **a-sync agent** — canned navigate & recommend replies (does not build full workflows)
 
-## View in iPhone Safari (no Koder)
+## Full cloud app (Next.js)
 
-See repo root **`IPHONE-VIEW-AND-SAVE.md`** — enable GitHub Pages, then open:
+Deploy from **`resync-ai/`** with Vercel **Root Directory = `resync-ai`**.  
+If you see an **“Index of /”** listing (`.rsc`, `_next` folders), Root Directory is wrong — see [VERCEL-DEPLOY.md](../VERCEL-DEPLOY.md).
 
-`https://dan88-mac.github.io/https-github.com-DannybrookeAI-dna-digital-guide/`
-
-## Full production app
-
-Deploy from GitHub folder **`resync-ai/`** via Vercel (see [VERCEL-DEPLOY.md](../VERCEL-DEPLOY.md)).
+Working static preview (Netlify): `https://deploy-preview-4--a-syncai.netlify.app`

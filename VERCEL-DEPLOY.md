@@ -4,15 +4,32 @@ Your app lives in **`resync-ai/`**. Production **`main`** must include that fold
 
 ## Required: Root Directory = `resync-ai`
 
-Vercel marks this repo as a monorepo. Preview/production builds fail if the project Root Directory is empty (repo root), because Next.js output lives under `resync-ai/.next`.
+Vercel marks this repo as a monorepo. Preview/production builds fail **or show a raw “Index of /” file listing** if the project Root Directory is empty (repo root) or Output Directory points at build artifacts.
 
 1. [Vercel Dashboard](https://vercel.com/dashboard) → your project → **Settings** → **General**.
 2. **Root Directory** → **Edit** → enter `resync-ai` → **Save**.
-3. Redeploy the latest Deployment (or push a new commit).
+3. Clear any custom **Output Directory** override (leave empty so Next.js controls `.next`).
+4. Framework Preset: **Next.js**.
+5. Redeploy the latest Deployment (or push a new commit).
 
 After this, install logs should show plain `npm install` (no `--prefix`), and Next.js is detected correctly.
 
-Root `vercel.json` also includes a `builds` entry pointing at `resync-ai/package.json` as a fallback when Root Directory cannot be changed.
+**Prefer the dashboard Root Directory** over relying only on the legacy root [`vercel.json`](vercel.json) `builds` entry. Keep Root Directory = `resync-ai` even if `vercel.json` exists.
+
+Root `vercel.json` includes a `builds` fallback pointing at `resync-ai/package.json` when Root Directory cannot be changed — but dashboard Root Directory is the reliable fix.
+
+## Symptom: “Index of /” (`.rsc`, `_next`, folder names)
+
+That screen is **not** the Resync UI. Vercel (or another host) is listing static files instead of running the Next.js server.
+
+| Cause | Fix |
+|-------|-----|
+| Root Directory empty / wrong | Set to **`resync-ai`** |
+| Output Directory set to `.`, `out`, or `resync-ai` | Clear it (Next.js default) |
+| Project created as **Other / static** | Recreate or switch Framework to **Next.js** |
+| You only need a phone preview | Use **`resync-ai-iphone.zip`** / [`koder-pack/`](koder-pack/) — no Vercel required |
+
+Static Netlify preview of the offline pack: `https://deploy-preview-4--a-syncai.netlify.app`
 
 ## Environment Variables
 
@@ -44,6 +61,10 @@ Do **not** rely on placeholder URLs in `vercel.json` — configure real values i
 - Supabase SQL: run files in `resync-ai/supabase/migrations/` in order.
 
 Full walkthrough: [resync-ai/DEPLOY-FROM-GITHUB.md](resync-ai/DEPLOY-FROM-GITHUB.md)
+
+## iPhone without Vercel
+
+Download [`resync-ai-iphone.zip`](resync-ai-iphone.zip) → Files → unzip → open in **Koder** (`index.html` → Preview). See [`koder-pack/README.md`](koder-pack/README.md).
 
 ## Local verify
 

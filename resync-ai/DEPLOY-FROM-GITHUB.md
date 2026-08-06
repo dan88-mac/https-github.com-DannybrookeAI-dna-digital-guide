@@ -52,8 +52,10 @@ Push to branch `cursor/resync-ai-full-build-86ce` or `main` after merge; Vercel 
 | Issue | Fix |
 |-------|-----|
 | Build fails on Vercel | Confirm root directory = `resync-ai` |
+| **“Index of /”** listing (`.rsc`, `_next`) | Root Directory wrong or Output Directory overridden — set Root = `resync-ai`, clear Output Directory, Framework = Next.js. Prefer dashboard Root Directory over legacy root `builds`. See [VERCEL-DEPLOY.md](../VERCEL-DEPLOY.md). |
 | Auth redirect errors | Set `NEXT_PUBLIC_APP_URL` to exact production URL |
 | Builder empty | Add Supabase env vars; run migrations |
+| Need UI on iPhone without cloud | Download repo `resync-ai-iphone.zip` / `koder-pack/` — open in Koder |
 
 Full technical blueprint: [../docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md](../docs/RESYNC_AI_MASTER_DEPLOYMENT_BLUEPRINT.md)
 

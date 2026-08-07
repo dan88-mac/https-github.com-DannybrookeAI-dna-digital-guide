@@ -19,7 +19,9 @@ const SEEDS = [
   },
 ];
 
-/** Daily curator drafts — admin must approve before community publish */
+/** Daily curator drafts — admin must approve before community publish.
+ * When CRON_SECRET is unset (local demo), returns a draft for UI testing.
+ */
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.get("authorization");

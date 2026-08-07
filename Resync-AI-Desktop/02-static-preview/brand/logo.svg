@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Resync AI">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#09090b"/>
+  <path d="M28 78 L64 28 L100 78" fill="none" stroke="url(#g)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="64" cy="78" r="10" fill="url(#g)"/>
+  <path d="M40 92 H88" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+</svg>

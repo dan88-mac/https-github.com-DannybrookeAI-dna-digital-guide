@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { CommunityWaitlistForm } from "@/components/marketing/CommunityWaitlistForm";
 import { ComposePostForm } from "@/components/community/ComposePostForm";
 import { CommunitySettingsDrawer } from "@/components/community/CommunitySettingsDrawer";
+import { CuratorAgentFeed } from "@/components/community/CuratorAgentFeed";
 import { FeedbackForm } from "@/components/community/FeedbackForm";
 import { MessageBoard } from "@/components/community/MessageBoard";
 import { PostCard, PostDetailDrawer } from "@/components/community/PostCard";
@@ -178,6 +179,7 @@ export function CommunityPageClient() {
 
         {/* Sidebar */}
         <aside className="space-y-6">
+          <CuratorAgentFeed />
           <MessageBoard messages={state.messages} onSend={handleSendMessage} />
           <FeedbackForm />
           <section className="community-section glass rounded-2xl p-6">

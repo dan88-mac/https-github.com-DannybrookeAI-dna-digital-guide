@@ -3,17 +3,25 @@
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { FeePreview } from "@/components/community/FeePreview";
+import { CodeSidePanel } from "@/components/builder/CodeSidePanel";
 import { DemoPreviewPanel } from "@/components/studio/DemoPreviewPanel";
 import { GraphPreview } from "@/components/studio/GraphPreview";
 import { RefinementPanel } from "@/components/studio/RefinementPanel";
+import { ContextInfo } from "@/components/ui/ContextInfo";
 import { useModeration } from "@/hooks/useModeration";
 import { useCommunityStore } from "@/hooks/useCommunityStore";
+import { getModule, MODULE_CATALOG } from "@/lib/engine/moduleCatalog";
 import {
   translateIdeaToGraph,
   type GraphScale,
   type IdeaGraphResult,
 } from "@/lib/engine/ideaToCanvas";
 import { calculateModelRefinement } from "@/lib/engine/refinementCalculator";
+import {
+  STUDIO_METHODS,
+  type MethodFamily,
+  type StudioMethod,
+} from "@/lib/studio/methodTemplates";
 import { createStudioDesign, saveStudioDesign } from "@/lib/studio/store";
 
 const SCALE_OPTIONS: { id: GraphScale; label: string; desc: string }[] = [
@@ -22,6 +30,20 @@ const SCALE_OPTIONS: { id: GraphScale; label: string; desc: string }[] = [
   { id: "monster", label: "Monster", desc: "25–50 nodes — enterprise pipelines" },
 ];
 
+const FAMILY_FILTERS: { id: MethodFamily | "all"; label: string }[] = [
+  { id: "all", label: "All 50" },
+  { id: "agentic", label: "Agentic" },
+  { id: "saas", label: "SaaS" },
+  { id: "ops", label: "Ops" },
+  { id: "multimodal", label: "Multimodal" },
+];
+
+function scaleForMethod(m: StudioMethod): GraphScale {
+  if (m.moduleMax <= 5) return "small";
+  if (m.moduleMax <= 20) return "large";
+  return "monster";
+}
+
 export function StudioPageClient() {
   const [idea, setIdea] = useState("");
   const [scaleOverride, setScaleOverride] = useState<GraphScale | null>(null);
@@ -29,8 +51,38 @@ export function StudioPageClient() {
   const [priceInput, setPriceInput] = useState("");
   const [savedId, setSavedId] = useState<string | null>(null);
   const [shareStatus, setShareStatus] = useState<string | null>(null);
+  const [family, setFamily] = useState<MethodFamily | "all">("all");
+  const [selectedMethod, setSelectedMethod] = useState<StudioMethod | null>(null);
+  const [methodEnabled, setMethodEnabled] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(STUDIO_METHODS.map((m) => [m.id, m.onByDefault])),
+  );
   const { createPost } = useCommunityStore();
   const { moderate } = useModeration();
+
+  const filteredMethods = useMemo(
+    () =>
+      family === "all" ? STUDIO_METHODS : STUDIO_METHODS.filter((m) => m.family === family),
+    [family],
+  );
+
+  const codeModules = useMemo(() => {
+    if (!graphResult) return [];
+    return graphResult.nodes
+      .map((n) => {
+        const mod = getModule(n.type) ?? MODULE_CATALOG.find((m) => m.id === n.type);
+        if (mod) return mod;
+        const label =
+          typeof n.data?.label === "string" ? n.data.label : n.type;
+        return {
+          id: n.type,
+          label,
+          category: "agent" as const,
+          libraries: [] as string[],
+          purpose: selectedMethod?.purpose ?? "Studio node",
+        };
+      })
+      .slice(0, 50);
+  }, [graphResult, selectedMethod]);
 
   const refinement = useMemo(() => {
     if (!graphResult) return null;
@@ -46,15 +98,24 @@ export function StudioPageClient() {
     return Math.round(val * 100);
   }, [priceInput]);
 
-  const generate = useCallback(() => {
-    const result = translateIdeaToGraph(
-      idea,
-      scaleOverride ? { scale: scaleOverride } : undefined,
+  const applyMethod = useCallback((m: StudioMethod) => {
+    setSelectedMethod(m);
+    setScaleOverride(scaleForMethod(m));
+    setIdea((prev) =>
+      prev.trim()
+        ? prev
+        : `${m.name}: ${m.explain} Next objective: ${m.nextObjective ?? "overview grade"}.`,
     );
+  }, []);
+
+  const generate = useCallback(() => {
+    const scale =
+      scaleOverride ?? (selectedMethod ? scaleForMethod(selectedMethod) : undefined);
+    const result = translateIdeaToGraph(idea, scale ? { scale } : undefined);
     setGraphResult(result);
     setSavedId(null);
     setShareStatus(null);
-  }, [idea, scaleOverride]);
+  }, [idea, scaleOverride, selectedMethod]);
 
   const handleSave = useCallback(() => {
     if (!graphResult) return;
@@ -123,7 +184,7 @@ export function StudioPageClient() {
           </h2>
           <p className="mt-2 text-sm text-zinc-400">
             Build 2–3 node sparks up to 50-module monster pipelines with autonomous next-objective
-            links. Toggle on/off, idle timers, and click triggers in Builder after generate.
+            links. Toggle on/off, idle timers, and click triggers below — then open Builder.
           </p>
           <ul className="mt-3 space-y-1 text-xs text-zinc-500">
             <li>· ReAct / tool-call / RAG agent modules from the catalog</li>
@@ -143,6 +204,87 @@ export function StudioPageClient() {
             same studio, different intent.
           </p>
         </div>
+      </section>
+
+      <section className="mt-8 rounded-2xl border border-resync-border/80 bg-resync-surface/20 p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 className="font-display text-xl font-semibold text-white">
+              Method templates · {STUDIO_METHODS.length}
+            </h2>
+            <p className="mt-1 text-sm text-zinc-400">
+              Selection criteria module creator — on/off, idle, click triggers, next-objective links.
+            </p>
+          </div>
+          <ContextInfo title="More soon" tone="violet">
+            Fifty shipping methods now; Forge will propose additions under admin approval.
+          </ContextInfo>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {FAMILY_FILTERS.map((f) => (
+            <button
+              key={f.id}
+              type="button"
+              onClick={() => setFamily(f.id)}
+              className={`rounded-full px-3 py-1 text-xs ${
+                family === f.id
+                  ? "bg-indigo-600 text-white"
+                  : "border border-resync-border text-zinc-400"
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+        <div className="mt-4 grid max-h-72 gap-2 overflow-y-auto sm:grid-cols-2 lg:grid-cols-3">
+          {filteredMethods.map((m) => (
+            <button
+              key={m.id}
+              type="button"
+              onClick={() => applyMethod(m)}
+              className={`rounded-xl border p-3 text-left transition ${
+                selectedMethod?.id === m.id
+                  ? "border-cyan-500/50 bg-cyan-950/30"
+                  : "border-resync-border/70 hover:border-indigo-500/30"
+              }`}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm font-medium text-white">{m.name}</p>
+                <span className="text-[10px] uppercase text-zinc-500">{m.family}</span>
+              </div>
+              <p className="mt-1 line-clamp-2 text-[11px] text-zinc-500">{m.explain}</p>
+              <div className="mt-2 flex flex-wrap items-center gap-2 text-[10px] text-zinc-400">
+                <label
+                  className="inline-flex items-center gap-1"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <input
+                    type="checkbox"
+                    checked={methodEnabled[m.id] ?? m.onByDefault}
+                    onChange={(e) =>
+                      setMethodEnabled((prev) => ({ ...prev, [m.id]: e.target.checked }))
+                    }
+                  />
+                  on
+                </label>
+                <span>idle {m.idleSeconds}s</span>
+                {m.clickTrigger && <span className="text-cyan-400">click</span>}
+                <span>
+                  {m.moduleHint}–{m.moduleMax} mods
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+        {selectedMethod && (
+          <p className="mt-3 text-xs text-indigo-300/90">
+            Selected <strong className="text-white">{selectedMethod.name}</strong> —{" "}
+            {selectedMethod.purpose}
+            {selectedMethod.nextObjective
+              ? ` · next → ${selectedMethod.nextObjective}`
+              : ""}
+          </p>
+        )}
       </section>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-3">
@@ -214,6 +356,10 @@ export function StudioPageClient() {
           </section>
 
           <DemoPreviewPanel nodes={graphResult?.nodes ?? []} />
+
+          <section className="studio-panel" style={{ animationDelay: "120ms" }}>
+            <CodeSidePanel modules={codeModules} />
+          </section>
         </div>
 
         {/* Right column */}

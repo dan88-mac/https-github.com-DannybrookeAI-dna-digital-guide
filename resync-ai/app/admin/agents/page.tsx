@@ -32,6 +32,18 @@ export default function AdminAgentsPage() {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
+            href="/admin/analytics"
+            className="rounded-xl border border-resync-border px-4 py-2 text-sm text-zinc-300 hover:text-white"
+          >
+            Analytics
+          </Link>
+          <Link
+            href="/admin/notifications"
+            className="rounded-xl border border-resync-border px-4 py-2 text-sm text-zinc-300 hover:text-white"
+          >
+            Notifications
+          </Link>
+          <Link
             href="/admin/security"
             className="rounded-xl border border-resync-border px-4 py-2 text-sm text-zinc-300 hover:text-white"
           >

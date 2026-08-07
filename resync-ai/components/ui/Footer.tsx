@@ -18,6 +18,7 @@ const COLUMNS: { heading: string; links: { href: string; label: string }[] }[] =
     heading: "Developers",
     links: [
       { href: "/docs", label: "Docs" },
+      { href: "/tools", label: "Toolbox" },
       { href: "/api-reference", label: "API reference" },
       { href: "/nodes", label: "Node reference" },
       { href: "/changelog", label: "Changelog" },

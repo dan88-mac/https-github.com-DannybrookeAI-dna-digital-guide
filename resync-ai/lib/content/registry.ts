@@ -135,6 +135,14 @@ export const CONTENT_REGISTRY: ContentEntry[] = [
 
   // ── Developers ──
   {
+    title: "Toolbox",
+    href: "/tools",
+    group: "Developers",
+    description: "100+ in-browser dev tools: encoders, converters, hashers, generators.",
+    keywords: ["tools", "utilities", "encode", "decode", "hash", "convert", "json", "base64"],
+    feature: true,
+  },
+  {
     title: "API reference",
     href: "/api-reference",
     group: "Developers",

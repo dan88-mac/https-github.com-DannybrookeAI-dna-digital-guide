@@ -10,6 +10,7 @@ const links = [
   { href: "/builder", label: "Builder" },
   { href: "/marketplace", label: "Marketplace" },
   { href: "/multimodal", label: "Multimodal" },
+  { href: "/tools", label: "Tools" },
   { href: "/community", label: "Community" },
   { href: "/docs", label: "Docs" },
   { href: "/pricing", label: "Pricing" },

@@ -11,9 +11,13 @@ const links = [
   { href: "/marketplace", label: "Marketplace" },
   { href: "/multimodal", label: "Multimodal" },
   { href: "/community", label: "Community" },
+  { href: "/docs", label: "Docs" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/vision", label: "Vision" },
 ];
+
+function openCommandPalette() {
+  window.dispatchEvent(new Event("resync:open-command"));
+}
 
 export function Header() {
   const pathname = usePathname();
@@ -56,6 +60,17 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={openCommandPalette}
+            aria-label="Search (Command or Control + K)"
+            className="hidden items-center gap-2 rounded-lg border border-resync-border px-3 py-2 text-sm text-zinc-400 transition hover:text-white sm:inline-flex"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+            </svg>
+            <kbd className="font-mono text-[10px] text-zinc-500">⌘K</kbd>
+          </button>
           <Link
             href="/login"
             className="hidden rounded-lg px-3 py-2 text-sm text-zinc-300 hover:text-white sm:inline"

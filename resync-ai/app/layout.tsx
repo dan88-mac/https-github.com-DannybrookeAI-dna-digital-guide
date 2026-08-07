@@ -4,6 +4,9 @@ import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { WebGLCanvas } from "@/components/ui/WebGLCanvas";
 import { SiteAgentShell } from "@/components/agent/SiteAgentShell";
+import { CommandPalette } from "@/components/content/CommandPalette";
+import { AnnouncementBanner } from "@/components/content/AnnouncementBanner";
+import { LATEST_RELEASE } from "@/lib/content/changelog";
 import "./globals.css";
 
 const syne = Syne({
@@ -45,7 +48,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteAgentShell>
           <WebGLCanvas />
           <Header />
-          <main className="min-h-screen pt-16">{children}</main>
+          <CommandPalette />
+          <main className="min-h-screen pt-16">
+            <AnnouncementBanner
+              id={LATEST_RELEASE.version}
+              message={`v${LATEST_RELEASE.version} — ${LATEST_RELEASE.title}`}
+              href="/changelog"
+              cta="See what's new"
+            />
+            {children}
+          </main>
           <Footer />
         </SiteAgentShell>
         <script

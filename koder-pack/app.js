@@ -107,10 +107,26 @@ const FALLBACK_DATA = {
     { title: "Stripe + Supabase", desc: "Billing and RLS setup." },
     { title: "Nonprofit story", desc: "99% healed runs case study." },
   ],
+  github: {
+    owner: "dan88-mac",
+    repo: "https-github.com-DannybrookeAI-dna-digital-guide",
+    branch: "main",
+  },
+  contracts: [
+    {
+      title: "Daniel — complete pack (PDF)",
+      path: "pdf-deliverables/daniel-noel-mcgarry/Resync-AI-Complete-Package-daniel-noel-mcgarry.pdf",
+    },
+    {
+      title: "Brooke — complete pack (PDF)",
+      path: "pdf-deliverables/brooke-caroline-hunt/Resync-AI-Complete-Package-brooke-caroline-hunt.pdf",
+    },
+  ],
   nav: [
     { id: "home", label: "Home" },
     { id: "templates", label: "Templates" },
     { id: "community", label: "Community" },
+    { id: "contracts", label: "Contracts" },
     { id: "about", label: "Mission" },
     { id: "pricing", label: "Pricing" },
     { id: "resources", label: "Resources" },

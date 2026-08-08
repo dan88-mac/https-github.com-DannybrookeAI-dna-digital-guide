@@ -1,0 +1,182 @@
+[
+  {
+    "id": "impl-001",
+    "name": "FastAPI pipeline host",
+    "runtime": "python",
+    "libraries": ["fastapi", "uvicorn", "pydantic"],
+    "functionCall": "internal.main",
+    "assemblyStep": 0,
+    "purpose": "HTTP + SSE server for live matrix telemetry"
+  },
+  {
+    "id": "impl-002",
+    "name": "Assembly line orchestrator",
+    "runtime": "python",
+    "libraries": ["asyncio"],
+    "functionCall": "hybrid_matrix.assembly_line",
+    "assemblyStep": 1,
+    "purpose": "Step-by-step multimodal workflow with stamped timestamps"
+  },
+  {
+    "id": "impl-003",
+    "name": "Geolocation merge",
+    "runtime": "python",
+    "libraries": ["geopy", "socket"],
+    "functionCall": "geo.resolve",
+    "assemblyStep": 2,
+    "purpose": "Merge browser GPS with host resolver hints"
+  },
+  {
+    "id": "impl-004",
+    "name": "Secret scrubber",
+    "runtime": "python",
+    "libraries": ["cryptography", "hmac"],
+    "functionCall": "security.scrub",
+    "assemblyStep": 3,
+    "purpose": "Mask API keys/tokens in logs and API responses"
+  },
+  {
+    "id": "impl-005",
+    "name": "Domain connector",
+    "runtime": "www",
+    "libraries": ["next", "fetch"],
+    "functionCall": "web.domains.connector",
+    "assemblyStep": 4,
+    "purpose": "Broad website domain analytics ingress"
+  },
+  {
+    "id": "impl-006",
+    "name": "HTTP scrape fetch",
+    "runtime": "python",
+    "libraries": ["httpx"],
+    "functionCall": "python.http.fetch",
+    "assemblyStep": 5,
+    "purpose": "Live content pull with folder tagging for libraries"
+  },
+  {
+    "id": "impl-007",
+    "name": "PowerShell bridge",
+    "runtime": "powershell",
+    "libraries": ["Microsoft.PowerShell.Core"],
+    "functionCall": "powershell.echo",
+    "assemblyStep": 6,
+    "purpose": "Azure/Microsoft automation hop"
+  },
+  {
+    "id": "impl-008",
+    "name": "Path trace simulator",
+    "runtime": "python",
+    "libraries": ["random"],
+    "functionCall": "path_simulator.build_path_trace",
+    "assemblyStep": 7,
+    "purpose": "Fiber/satellite/CDN hop visualization feed"
+  },
+  {
+    "id": "impl-009",
+    "name": "Find-me GPS beeper",
+    "runtime": "python",
+    "libraries": ["uuid", "hmac"],
+    "functionCall": "find_me.ping",
+    "assemblyStep": 8,
+    "purpose": "Frontend dot showing active scrape location"
+  },
+  {
+    "id": "impl-010",
+    "name": "Next.js SSE proxy",
+    "runtime": "www",
+    "libraries": ["next/server"],
+    "functionCall": "/api/hybrid/stream",
+    "assemblyStep": 9,
+    "purpose": "Browser live pipeline without CORS friction"
+  },
+  {
+    "id": "impl-011",
+    "name": "WebGL matrix canvas",
+    "runtime": "www",
+    "libraries": ["three", "webgl"],
+    "functionCall": "MatrixCanvas.render",
+    "assemblyStep": 10,
+    "purpose": "Immersive realtime node graph (60fps target)"
+  },
+  {
+    "id": "impl-012",
+    "name": "OpenAI tool runtime",
+    "runtime": "python",
+    "libraries": ["openai"],
+    "functionCall": "resync-ai/lib/runtime/openaiTools",
+    "assemblyStep": 11,
+    "purpose": "Function-calling self-heal integration"
+  },
+  {
+    "id": "impl-013",
+    "name": "Supabase telemetry",
+    "runtime": "www",
+    "libraries": ["@supabase/supabase-js"],
+    "functionCall": "/api/telemetry/log",
+    "assemblyStep": 12,
+    "purpose": "Persist execution logs"
+  },
+  {
+    "id": "impl-014",
+    "name": "Azure Key Vault mask",
+    "runtime": "powershell",
+    "libraries": ["Az.KeyVault"],
+    "functionCall": "Secure-KeyVaultMask.ps1",
+    "assemblyStep": 13,
+    "purpose": "Cloud secret retrieval with display masking"
+  },
+  {
+    "id": "impl-015",
+    "name": "Azure deploy web app",
+    "runtime": "powershell",
+    "libraries": ["Az.Websites"],
+    "functionCall": "Deploy-HybridMatrixRunner.ps1",
+    "assemblyStep": 14,
+    "purpose": "Publish Python runner to App Service"
+  },
+  {
+    "id": "impl-016",
+    "name": "JSON transform",
+    "runtime": "python",
+    "libraries": ["json"],
+    "functionCall": "python.transform.json_parse",
+    "assemblyStep": 15,
+    "purpose": "Multimodal payload normalization"
+  },
+  {
+    "id": "impl-017",
+    "name": "React Flow builder",
+    "runtime": "www",
+    "libraries": ["@xyflow/react"],
+    "functionCall": "NodeBoard",
+    "assemblyStep": 16,
+    "purpose": "Visual workflow authoring"
+  },
+  {
+    "id": "impl-018",
+    "name": "Stripe billing gate",
+    "runtime": "www",
+    "libraries": ["stripe"],
+    "functionCall": "/api/stripe/checkout",
+    "assemblyStep": 17,
+    "purpose": "Credit-gated execution"
+  },
+  {
+    "id": "impl-019",
+    "name": "Cursor agent overview",
+    "runtime": "www",
+    "libraries": ["openai"],
+    "functionCall": "/api/agent/chat",
+    "assemblyStep": 18,
+    "purpose": "AI interpretation of live runner state"
+  },
+  {
+    "id": "impl-020",
+    "name": "Module catalog",
+    "runtime": "www",
+    "libraries": ["typescript"],
+    "functionCall": "moduleCatalog.ts",
+    "assemblyStep": 19,
+    "purpose": "4500+ line multimodal module registry"
+  }
+]

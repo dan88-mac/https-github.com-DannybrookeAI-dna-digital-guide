@@ -10,6 +10,7 @@ const links = [
   { href: "/builder", label: "Builder" },
   { href: "/marketplace", label: "Marketplace" },
   { href: "/multimodal", label: "Multimodal" },
+  { href: "/hybrid-workflow", label: "Matrix" },
   { href: "/community", label: "Community" },
   { href: "/pricing", label: "Pricing" },
   { href: "/vision", label: "Vision" },
